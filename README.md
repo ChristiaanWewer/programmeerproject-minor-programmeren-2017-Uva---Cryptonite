@@ -25,7 +25,7 @@ Een applicatie waarmee de prijzen van cryptomunten in garfiekvorm bekeken kunnen
 - Achtergrondservice die een notificatie stuurt bij een bepaalde prijsverandering
 
 ## Design Applicatie
-
+![alt text](https://github.com/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uva---Cryptonite/blob/master/doc/ProjectDesign.png?raw=true "Application Design Cryptonite")
 
 ## Project Data
 ### API's

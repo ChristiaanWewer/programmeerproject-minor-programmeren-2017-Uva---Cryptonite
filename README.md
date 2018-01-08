@@ -10,7 +10,7 @@ Soort applicatie: Android applicatie
 
 Naam applicatie: Cryptonite
 
-Omschrijving: Applicatie om prijzen van cryptomunten te bekijken
+Omschrijving: Applicatie om realtime prijzen van cryptomunten te bekijken
 
 # Doelgroep
 Als een persoon in kwestie cryptomunten heeft en de koersen actief in de gaten wil houden, heeft deze gene hier een Android applicatie voor nodig.

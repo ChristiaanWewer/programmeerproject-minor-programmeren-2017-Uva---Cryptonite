@@ -3,9 +3,13 @@ Programmeerproject app voor de minor programmeren
 
 # Project Info
 Naam: Christiaan Wewer
+
 Studentnummer: 11943858
+
 Soort applicatie: Android applicatie
+
 Naam applicatie: Cryptonite
+
 Omschrijving: Applicatie om prijzen van cryptomunten te bekijken
 
 # Doelgroep
@@ -19,6 +23,7 @@ Een applicatie waarmee de prijzen van cryptomunten in garfiekvorm bekeken kunnen
 - Lijst van munten bekijken met huidige prijzen en prijsveranderingen
 - Lijst van favorieten
 - Scherm met muntgrafiek en muntdata
+- Zoekfunctie van munten
 
 ## Eventuele Functies
 - Websockets om realtime data op te vragen in plaats van refreshfunctie
@@ -39,6 +44,22 @@ Een applicatie waarmee de prijzen van cryptomunten in garfiekvorm bekeken kunnen
   JSON API ophalen
 - GraphView: http://www.android-graphview.org/
   grafieken bekijken van prijzen
+  
+## Vergelijking andere app
+### Crypto Market
+Kan muntlijsten weergeven, heeft onderaan een balk waarmee naar favorieten geswitcht kan worden en bovenin is een balk met zoekfunctie, volgorde functie en driepuntsmenu met koopfunctie er in.
+Als er op een munt geklikt wordt kan er basale info bekeken worden en een grafiek. Ook is er een bovenbalk met daarin een favorieten knop en een knop naar de Redditpagina en de coinwebsite.
+
+Ik denk dat bij het beginscherm dit efficienter kan voor mijn app door de onder- en bovenbalk te combineren. De manier om specifieke cryptomuntdata te bekijken zal er uiteindelijk ongeveer hetzelfde uit komen te zien.
+ 
+  
+## Mogelijke technische problemen
+- GraphView library zou mogelijkerwijs niet goed werkend gekregen kunnen worden
+- ASyncHttpRequest library zou mogelijkerwijs niet zo goed werkend gekregen kunnen worden
+- API's worden aangepast tijdens het project
+- munt(namen) van beide API's komen niet overeen
+
+
   
  
   

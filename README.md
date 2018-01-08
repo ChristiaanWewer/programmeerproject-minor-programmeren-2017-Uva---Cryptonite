@@ -51,7 +51,7 @@ Een applicatie waarmee de prijzen van cryptomunten realtime in garfiekvorm bekek
 Kan muntlijsten weergeven, heeft onderaan een balk waarmee naar favorieten geswitcht kan worden en bovenin is een balk met zoekfunctie, volgorde functie en driepuntsmenu met koopfunctie er in.
 Als er op een munt geklikt wordt kan er basale info bekeken worden en een grafiek. Ook is er een bovenbalk met daarin een favorieten knop en een knop naar de Redditpagina en de coinwebsite.
 
-Ik denk dat bij het beginscherm dit efficienter kan voor mijn app door de onder- en bovenbalk te combineren. De manier om specifieke cryptomuntdata te bekijken zal er uiteindelijk ongeveer hetzelfde uit komen te zien.
+Ik denk dat bij het beginscherm dit efficienter kan voor mijn app door de onder- en bovenbalk te combineren. De manier om specifieke cryptomuntdata te bekijken zal er uiteindelijk ongeveer hetzelfde uit komen te zien. Deze applicatie onderscheid zich omdat de data realtime is, er een functie die bij bepaalde coinwaarde een notificatie stuurt en daarnaast gratis en zonder reclame is.
   
 ## Mogelijke technische problemen
 - GraphView library zou mogelijkerwijs niet goed werkend gekregen kunnen worden

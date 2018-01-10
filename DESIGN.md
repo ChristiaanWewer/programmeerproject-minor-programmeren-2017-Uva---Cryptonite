@@ -23,10 +23,6 @@
 ## classen
 | MainCryptoActivity |
 | --- |
-| ArrayList favoriteArrayList |
-| ArrayList listenerArrayList |
-| ArrayList coinArrayList |
-| --- |
 | searchCoin() |
 | refreshList() |
 | goToFavorites() |
@@ -57,15 +53,10 @@
 
 | TextInfoCryptoFragment |
 | --- |
-| ArrayList liveCoinData |
-| --- |
 | cryptoDataWebStream() |
 | graphButtonListener() |
 
 | GraphInfoCryptoFragment |
-| --- |
-| ArrayList cryptoPriceData |
-| int graphViewScale[][] |
 | --- |
 | infoButtonListener() |
 | graphViewListener() |
@@ -75,11 +66,6 @@
 | getLiveCryptoCoinData() |
 
 | coinListModel |
-| --- |
-| int cryptoCoinNumber |
-| String cryptoCoinName |
-| String cryptoCoinPrice |
-| String cryptoCoinPriceChange |
 | --- |
 | getCryptoCoinNumber() |
 | getCryptoCoinName() |
@@ -91,12 +77,6 @@
 | setCryptoCoinPriceChange() |
 
 | coinListenerListModel |
-| --- |
-| int cryptoCoinNumber |
-| String cryptoCoinName |
-| String cryptoCoinPrice |
-| String cryptoCoinHighPrice |
-| String cryptoCoinLowPrice |
 | --- |
 | getCryptoCoinNumber() |
 | getCryptoCoinName() |

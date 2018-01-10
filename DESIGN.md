@@ -7,6 +7,7 @@
 
 ## class namen
 | Class namen |
+| --- |
 | MainCryptoActivity |
 | MainCryptoFragment |
 | FavoriteCryptoFragment |
@@ -109,6 +110,7 @@
 | setCryptoCoinLowPrice() |
 
 | SQLLiteDatabse |
+| --- |
 | add() |
 | selectAll() |
 | delete() |

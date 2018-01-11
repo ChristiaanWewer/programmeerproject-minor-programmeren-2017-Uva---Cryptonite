@@ -44,7 +44,7 @@ public class CryptoAdapter extends ArrayAdapter {
         priceRowTextView.setText(Double.toString(cryptoCoinData.get(position).getPriceUsd()));
         priceChangeRowTextView.setText(Double.toString(cryptoCoinData.get(position).getChange24h()));
 
-        Log.d("adapter", "adapter is getting used");
+//        Log.d("adapter", "adapter is getting used");
 
         return view;
     }

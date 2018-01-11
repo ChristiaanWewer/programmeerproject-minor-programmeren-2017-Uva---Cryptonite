@@ -15,6 +15,7 @@ public class CryptoCoinData {
     private int dayVolumeUsd;
     private int marketCapUsd;
     private float change24h;
+    private String coinId;
 
     public static CryptoCoinData fromJson(JSONArray jsonArray, int coinJsonObjectIndex) {
 
@@ -26,6 +27,7 @@ public class CryptoCoinData {
             coinData.dayVolumeUsd = jsonArray.getJSONObject(coinJsonObjectIndex).getInt("24h_volume_usd");
             coinData.marketCapUsd = jsonArray.getJSONObject(coinJsonObjectIndex).getInt("market_cap_usd");
             coinData.change24h = jsonArray.getJSONObject(coinJsonObjectIndex).getInt("percent_change_24h");
+            coinData.coinId = jsonArray.getJSONObject(coinJsonObjectIndex).getString("id");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -53,6 +55,14 @@ public class CryptoCoinData {
 
     public double getPriceUsd() {
         return priceUsd;
+    }
+
+    public String getCoinId() {
+        return coinId;
+    }
+
+    public void setCoinId(String coinId) {
+        this.coinId = coinId;
     }
 
     public void setPriceUsd(double priceUsd) {

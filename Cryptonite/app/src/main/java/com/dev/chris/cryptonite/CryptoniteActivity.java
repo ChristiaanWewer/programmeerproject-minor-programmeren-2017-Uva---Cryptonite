@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 public class CryptoniteActivity extends AppCompatActivity {
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cryptonite);
@@ -35,6 +36,18 @@ public class CryptoniteActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
        Log.d("works", "works");
+
+       switch (item.getItemId()) {
+           case R.id.goToFavoriteMenu:
+
+               FragmentManager fm = getSupportFragmentManager();
+               FavoriteFragment favoriteFragment = new FavoriteFragment();
+               FragmentTransaction ft = fm.beginTransaction();
+               ft.replace(R.id.crypto_fragment_container, favoriteFragment);
+               ft.commit();
+
+               break;
+        }
        return super.onOptionsItemSelected(item);
     }
 }

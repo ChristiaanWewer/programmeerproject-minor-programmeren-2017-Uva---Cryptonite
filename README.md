@@ -28,7 +28,8 @@ Een applicatie waarmee de prijzen van cryptomunten realtime in garfiekvorm bekek
 - Achtergrondservice die een notificatie stuurt bij een bepaalde prijsverandering
 
 ## Eventuele functionaliteit
-- grafiek met open high/low 
+- material design
+- er een spelletje van maken door iedere gebruiker met nepgeld te laten traden 
 
 ## Design Applicatie
 ![alt text](https://github.com/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uva---Cryptonite/blob/master/doc/ProjectDesign.png?raw=true "Application Design Cryptonite")
@@ -45,6 +46,8 @@ Een applicatie waarmee de prijzen van cryptomunten realtime in garfiekvorm bekek
   JSON API ophalen
 - GraphView: http://www.android-graphview.org/
   grafieken bekijken van prijzen
+-SQLLiteDataBase
+ favorieten en luisteraar in opslaan
   
 ## Vergelijking andere app
 ### Crypto Market

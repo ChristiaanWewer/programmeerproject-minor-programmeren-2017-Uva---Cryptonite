@@ -1,5 +1,6 @@
 package com.dev.chris.cryptonite;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -28,6 +29,7 @@ public class CryptoFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                             Bundle savedInstanceState) {
         Log.d("open fragment", "yes!");
+
         View rootView = inflater.inflate(R.layout.fragment_crypto, container, false);;
         RequestParams params = new RequestParams();
         params.put("limit", 10);
@@ -97,7 +99,8 @@ public class CryptoFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-
+        Intent intent = new Intent(getActivity(), SpecificCoinInfoActivity.class);
+        startActivity(intent);
     }
 
 

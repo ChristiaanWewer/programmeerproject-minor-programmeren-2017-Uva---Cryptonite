@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import org.json.JSONArray;
 import com.loopj.android.http.*;
@@ -25,7 +26,10 @@ public class FavoriteFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
+        favoriteCryptoCoins = new ArrayList<>();
+
         favoriteCoinDatabase = FavoriteCoinDatabase.getInstance(getContext());
         Cursor idCursor = favoriteCoinDatabase.selectId();
         while (idCursor.moveToNext()) {
@@ -34,10 +38,36 @@ public class FavoriteFragment extends ListFragment {
             RequestParams params = new RequestParams();
             params.put("limit", 10);
             networkRequest(params, idString);
-
+            Log.d("idString", idString);
         }
 
         return inflater.inflate(R.layout.fragment_favorite, container, false);
+
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            public boolean onItemLongClick(AdapterView<?> av, View v, int position, long id) {
+
+                String coinName = favoriteCryptoCoins.get(position).getCoinName();
+                favoriteCoinDatabase = FavoriteCoinDatabase.getInstance(getContext());
+
+                favoriteCoinDatabase.removeCoin(coinName);
+
+                for (int i = 0, n = favoriteCryptoCoins.size(); i < n; i++) {
+                    if (favoriteCryptoCoins.get(i).getCoinName().equals(coinName)){
+                        favoriteCryptoCoins.remove(i);
+                    }
+                }
+
+                cryptoAdapter = new CryptoAdapter(getActivity(), favoriteCryptoCoins);
+                FavoriteFragment.this.setListAdapter(cryptoAdapter);
+                return true;
+            }
+        });
 
     }
 
@@ -46,8 +76,10 @@ public class FavoriteFragment extends ListFragment {
         Log.d("coins", "networkJob() called");
         AsyncHttpClient client = new AsyncHttpClient();
         client.setTimeout(5000);
-        url += idString;
-        client.get(url, tries, new JsonHttpResponseHandler() {
+        String coinUrl = url;
+        coinUrl += idString;
+        Log.d("url", "url");
+        client.get(coinUrl, tries, new JsonHttpResponseHandler() {
 
             @Override
             public void onStart() {
@@ -57,7 +89,7 @@ public class FavoriteFragment extends ListFragment {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 Log.d("success: ", response.toString());
-                favoriteCryptoCoins = new ArrayList<>();
+
 
                 CryptoCoinData aCoin = CryptoCoinData.fromJson(response, 0);
                 aCoin.setCoinId(idString);

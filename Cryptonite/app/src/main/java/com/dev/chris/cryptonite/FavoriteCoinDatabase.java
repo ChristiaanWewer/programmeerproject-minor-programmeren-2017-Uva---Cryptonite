@@ -60,6 +60,16 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
 
         // add coin to the database
         SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor selectIdFromDb = db.rawQuery("SELECT " + COL1 + " FROM " + NAME, null);
+
+        while (selectIdFromDb.moveToNext()) {
+            String selectString = selectIdFromDb.getString(selectIdFromDb.getColumnIndex(FavoriteCoinDatabase.COL1));
+            if (selectString.equals(coinId)) {
+                return;
+            }
+        }
+
         ContentValues coinContentValues = new ContentValues();
         coinContentValues.put(COL1, coinId);
         coinContentValues.put(COL2, coinName);
@@ -77,10 +87,28 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
     public Cursor selectId() {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor selectForFragmentDBCursor = db.rawQuery("SELECT " + COL1 + " FROM " + NAME, null);
+        Cursor selectIdFromDb = db.rawQuery("SELECT " + COL1 + " FROM " + NAME, null);
 
 //        Log.d("check", selectForFragmentDBCursor.getString(0));
-        return selectForFragmentDBCursor;
+        return selectIdFromDb;
+    }
+
+    public void removeCoin(String coinName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+//        Cursor selectIdFromDb = db.rawQuery("SELECT " + COL2 + " FROM " + NAME, null);
+//        selectIdFromDb.moveToFirst();
+//
+//        while (selectIdFromDb.moveToNext()) {
+//            String selectString = selectIdFromDb.getString(selectIdFromDb.getColumnIndex(FavoriteCoinDatabase.COL2));
+//            if (selectString.equals(coinName)) {
+//                Log.d("coinname Found", "coinName Found!");
+//            }
+//        }
+        db.execSQL("DELETE FROM " + NAME + " WHERE " + COL2 + "=\"" + coinName + "\"");
+
+
+
     }
 
 }

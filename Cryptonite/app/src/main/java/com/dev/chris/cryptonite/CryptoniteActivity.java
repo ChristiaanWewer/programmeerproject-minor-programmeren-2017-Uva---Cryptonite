@@ -36,17 +36,23 @@ public class CryptoniteActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
        Log.d("works", "works");
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.addToBackStack(null);
 
-       switch (item.getItemId()) {
+        switch (item.getItemId()) {
            case R.id.goToFavoriteMenu:
 
-               FragmentManager fm = getSupportFragmentManager();
                FavoriteFragment favoriteFragment = new FavoriteFragment();
-               FragmentTransaction ft = fm.beginTransaction();
                ft.replace(R.id.crypto_fragment_container, favoriteFragment);
                ft.commit();
 
                break;
+           case R.id.goToListenerMenu:
+               ListenerFragment listenerFragment = new ListenerFragment();
+               ft.replace(R.id.crypto_fragment_container, listenerFragment);
+               ft.commit();
+
         }
        return super.onOptionsItemSelected(item);
     }

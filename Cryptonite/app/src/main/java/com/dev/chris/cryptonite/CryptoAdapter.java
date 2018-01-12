@@ -25,8 +25,6 @@ public class CryptoAdapter extends ArrayAdapter {
 
         this.cryptoCoinData = cryptoCoinData;
         this.context = context;
-        Log.d("check if exists", cryptoCoinData.get(0).getCoinName());
-
     }
 
     @Override

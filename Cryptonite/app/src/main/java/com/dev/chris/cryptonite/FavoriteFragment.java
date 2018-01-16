@@ -27,6 +27,8 @@ public class FavoriteFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+
         // Inflate the layout for this fragment
         favoriteCryptoCoins = new ArrayList<>();
 

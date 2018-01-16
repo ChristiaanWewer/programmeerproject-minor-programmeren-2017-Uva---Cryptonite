@@ -13,7 +13,7 @@ public class CryptoCoinData {
     private int rank;
     private double priceUsd;
     private int dayVolumeUsd;
-    private int marketCapUsd;
+    private String symbol;
     private float change24h;
     private String coinId;
 
@@ -25,7 +25,7 @@ public class CryptoCoinData {
             coinData.rank = jsonArray.getJSONObject(coinJsonObjectIndex).getInt("rank");
             coinData.priceUsd = jsonArray.getJSONObject(coinJsonObjectIndex).getDouble("price_usd");;
             coinData.dayVolumeUsd = jsonArray.getJSONObject(coinJsonObjectIndex).getInt("24h_volume_usd");
-            coinData.marketCapUsd = jsonArray.getJSONObject(coinJsonObjectIndex).getInt("market_cap_usd");
+            coinData.symbol = jsonArray.getJSONObject(coinJsonObjectIndex).getString("symbol");
             coinData.change24h = jsonArray.getJSONObject(coinJsonObjectIndex).getInt("percent_change_24h");
             coinData.coinId = jsonArray.getJSONObject(coinJsonObjectIndex).getString("id");
 
@@ -81,12 +81,9 @@ public class CryptoCoinData {
         this.dayVolumeUsd = dayVolumeUsd;
     }
 
-    public int getMarketCapUsd() {
-        return marketCapUsd;
+    public String getSymbol() {
+        return symbol;
     }
 
-    public void setMarketCapUsd(int marketCapUsd) {
-        this.marketCapUsd = marketCapUsd;
-    }
 
 }

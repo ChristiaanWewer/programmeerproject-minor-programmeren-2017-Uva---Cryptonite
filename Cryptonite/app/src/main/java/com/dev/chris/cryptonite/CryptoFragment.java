@@ -1,7 +1,6 @@
 package com.dev.chris.cryptonite;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -31,6 +30,7 @@ public class CryptoFragment extends ListFragment {
         Log.d("open fragment", "yes!");
 
         View rootView = inflater.inflate(R.layout.fragment_crypto, container, false);;
+
         RequestParams params = new RequestParams();
         params.put("limit", 10);
         networkRequest(params);
@@ -44,18 +44,16 @@ public class CryptoFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            public boolean onItemLongClick(AdapterView<?> av, View v, int position, long id) {
+        getListView().setOnItemLongClickListener((av, v, position, id) -> {
 
-                String coinName = cryptoArrayList.get(position).getCoinName();
-                String coinId = cryptoArrayList.get(position).getCoinId();
-                Log.d("COINID AND ITEM", coinId + coinName);
-                favoriteCoinDatabase = FavoriteCoinDatabase.getInstance(getContext());
+            String coinName = cryptoArrayList.get(position).getCoinName();
+            String coinId = cryptoArrayList.get(position).getCoinId();
+            Log.d("COINID AND ITEM", coinId + coinName);
+            favoriteCoinDatabase = FavoriteCoinDatabase.getInstance(getContext());
 
-                favoriteCoinDatabase.addCoinNameIdItem(coinId, coinName);
+            favoriteCoinDatabase.addCoinNameIdItem(coinId, coinName);
 
-                return true;
-            }
+            return true;
         });
 
     }
@@ -63,7 +61,7 @@ public class CryptoFragment extends ListFragment {
     private void networkRequest(RequestParams tries) {
         Log.d("coins", "networkJob() called");
         AsyncHttpClient client = new AsyncHttpClient();
-        client.setTimeout(50000);
+        client.setTimeout(5000);
         client.get(url, tries, new JsonHttpResponseHandler() {
 
             @Override
@@ -99,7 +97,10 @@ public class CryptoFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
+
+        String symbolString = cryptoArrayList.get(position).getSymbol();
         Intent intent = new Intent(getActivity(), SpecificCoinInfoActivity.class);
+        intent.putExtra("coinSymbolString", symbolString);
         startActivity(intent);
     }
 

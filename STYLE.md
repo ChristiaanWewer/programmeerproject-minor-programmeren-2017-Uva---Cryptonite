@@ -14,7 +14,7 @@
 	* zo min mogelijk 'hardcoden'
 	* zo min mogelijk lange stukken code gebruiken, maar dit opbreken
 	* logische volgorde bij code
-	* zoo min mogelijk code dubbel gebruiken
+	* zo min mogelijk code dubbel gebruiken
 	* nested if statements zo veel mogelijk vermijden 
 	* bij een button o.i.d. een onClickListener gebruiken
 	

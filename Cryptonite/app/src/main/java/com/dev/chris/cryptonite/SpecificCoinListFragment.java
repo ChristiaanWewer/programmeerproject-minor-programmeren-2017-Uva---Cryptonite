@@ -3,56 +3,50 @@ package com.dev.chris.cryptonite;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SpecificCoinListFragment extends Fragment {
 
 
-   String url;
-   SpecificCoinInfoActivity specificCoinInfoActivity;
+    View rootView;
+    String url;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
-//        String coinPartOfUrl = specificCoinInfoActivity.getSymbolString();
-//        String coinPartOfUrl = "BTC";
+        rootView = inflater.inflate(R.layout.fragment_specific_coin_list, container, false);
+
         String coinPartOfUrl = getActivity().getIntent().getStringExtra("coinSymbolString");
 
         Log.d("coinPartOfUrl", coinPartOfUrl);
         url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + coinPartOfUrl + "&tsyms=USD";
 
-
-
         RequestParams specificParams = new RequestParams();
         specificParams.put("limit", 10);
         networkRequest(specificParams, coinPartOfUrl);
 
-
-        return inflater.inflate(R.layout.fragment_specific_coin_list, container, false);
+        return rootView;
     }
+
+
+
+
 
     private void networkRequest(RequestParams tries, String coinSymbol) {
         Log.d("coins", "networkJob() called");
@@ -84,27 +78,40 @@ public class SpecificCoinListFragment extends Fragment {
     }
 
     public void setFragmentUI(SpecificCryptoCoinData specificCoin) {
-        View fragmentView = SpecificCoinListFragment.this.getView();
 
-        TextView marketTextView = fragmentView.findViewById(R.id.marketFromApiTextView);
-        TextView priceTextView = fragmentView.findViewById(R.id.priceFromAPITextView);
-        TextView lastUpdateTextView = fragmentView.findViewById(R.id.lastUpdateFromAPITextView);
-        TextView lastVolumeTextView = fragmentView.findViewById(R.id.lastVolumeFromAPITextView);
-        TextView lastVolumeToTextView = fragmentView.findViewById(R.id.lastVolumeToFromAPITextView);
-        TextView lastTradeIdTextView = fragmentView.findViewById(R.id.lastTradedIdFromAPITextView);
-        TextView volume24HourTextView = fragmentView.findViewById(R.id.volume24HourFromAPITextView);
-        TextView volume24HourToTextView = fragmentView.findViewById(R.id.volume24HourToFromAPITextView);
-        TextView open24HourTextView = fragmentView.findViewById(R.id.open24HourFromAPITextView);
-        TextView high24HourTextView = fragmentView.findViewById(R.id.high24HourFromAPITextView);
-        TextView low24HourTextView = fragmentView.findViewById(R.id.low24HourFromAPITextView);
-        TextView change24HourTextView = fragmentView.findViewById(R.id.change24HourFromAPITextView);
-        TextView changePct24HourTextView = fragmentView.findViewById(R.id.changePct24HourFromAPITextView);
-        TextView changeDayTextView = fragmentView.findViewById(R.id.changeDayFromAPITextView);
-        TextView changePctDayTextView = fragmentView.findViewById(R.id.changePctDayFromAPITextView);
-        TextView supplyTextView = fragmentView.findViewById(R.id.supplyFromAPITextView);
-        TextView mktCapTextView = fragmentView.findViewById(R.id.mktCapFromAPITextView);
-        TextView totalVolume24HourTextView = fragmentView.findViewById(R.id.totalVolume24HFromAPITextView);
-        TextView totalVolume24HourToTextView = fragmentView.findViewById(R.id.totalVolume24HToFromAPITextView);
+//        View rootView = SpecificCoinListFragment.this.getView();
+//        View rootView = this.rootView;
+        Button graphButton = rootView.findViewById(R.id.goToGraphButton);
+
+        graphButton.setOnClickListener(v -> {
+            // Code here executes on main thread after user presses button
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.addToBackStack(null);
+            SpecificCoinGraphFragment specificCoinGraphFragment = new SpecificCoinGraphFragment();
+            ft.replace(R.id.specific_crypto_fragment_container, specificCoinGraphFragment);
+            ft.commit();
+        });
+
+        TextView marketTextView = rootView.findViewById(R.id.marketFromApiTextView);
+        TextView priceTextView = rootView.findViewById(R.id.priceFromAPITextView);
+        TextView lastUpdateTextView = rootView.findViewById(R.id.lastUpdateFromAPITextView);
+        TextView lastVolumeTextView = rootView.findViewById(R.id.lastVolumeFromAPITextView);
+        TextView lastVolumeToTextView = rootView.findViewById(R.id.lastVolumeToFromAPITextView);
+        TextView lastTradeIdTextView = rootView.findViewById(R.id.lastTradedIdFromAPITextView);
+        TextView volume24HourTextView = rootView.findViewById(R.id.volume24HourFromAPITextView);
+        TextView volume24HourToTextView = rootView.findViewById(R.id.volume24HourToFromAPITextView);
+        TextView open24HourTextView = rootView.findViewById(R.id.open24HourFromAPITextView);
+        TextView high24HourTextView = rootView.findViewById(R.id.high24HourFromAPITextView);
+        TextView low24HourTextView = rootView.findViewById(R.id.low24HourFromAPITextView);
+        TextView change24HourTextView = rootView.findViewById(R.id.change24HourFromAPITextView);
+        TextView changePct24HourTextView = rootView.findViewById(R.id.changePct24HourFromAPITextView);
+        TextView changeDayTextView = rootView.findViewById(R.id.changeDayFromAPITextView);
+        TextView changePctDayTextView = rootView.findViewById(R.id.changePctDayFromAPITextView);
+        TextView supplyTextView = rootView.findViewById(R.id.supplyFromAPITextView);
+        TextView mktCapTextView = rootView.findViewById(R.id.mktCapFromAPITextView);
+        TextView totalVolume24HourTextView = rootView.findViewById(R.id.totalVolume24HFromAPITextView);
+        TextView totalVolume24HourToTextView = rootView.findViewById(R.id.totalVolume24HToFromAPITextView);
 
         marketTextView.setText(specificCoin.getMarket());
         priceTextView.setText(specificCoin.getPrice());
@@ -127,7 +134,5 @@ public class SpecificCoinListFragment extends Fragment {
         totalVolume24HourToTextView.setText(specificCoin.getTotalVolume24Hour24HourTo());
 
     }
-
-
 
 }

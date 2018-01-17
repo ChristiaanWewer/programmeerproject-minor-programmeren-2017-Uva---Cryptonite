@@ -50,9 +50,7 @@ public class CryptoFragment extends ListFragment {
             String coinId = cryptoArrayList.get(position).getCoinId();
             Log.d("COINID AND ITEM", coinId + coinName);
             favoriteCoinDatabase = FavoriteCoinDatabase.getInstance(getContext());
-
             favoriteCoinDatabase.addCoinNameIdItem(coinId, coinName);
-
             return true;
         });
 
@@ -90,7 +88,6 @@ public class CryptoFragment extends ListFragment {
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 Log.d("error: ", throwable.toString());
             }
-
         });
     }
 

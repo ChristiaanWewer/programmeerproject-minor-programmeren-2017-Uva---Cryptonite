@@ -62,12 +62,16 @@ public class SpecificCoinInfoActivity extends AppCompatActivity {
 //
 //    }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
         setContentView(R.layout.activity_specific_coin_info);
+
+
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 //        ft.addToBackStack(null);

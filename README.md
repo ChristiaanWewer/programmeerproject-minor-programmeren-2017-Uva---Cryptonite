@@ -24,7 +24,7 @@ Een applicatie waarmee de prijzen van cryptomunten realtime in garfiekvorm bekek
 - Lijst van favorieten
 - Scherm met muntgrafiek en muntdata
 - Zoekfunctie van munten
-- Websockets om realtime data op te vragen in plaats van refreshfunctie
+- Websockets/eens in de x tijd een json api om realtime data op te vragen in plaats van refreshfunctie
 - Achtergrondservice die een notificatie stuurt bij een bepaalde prijsverandering
 
 ## Eventuele functionaliteit

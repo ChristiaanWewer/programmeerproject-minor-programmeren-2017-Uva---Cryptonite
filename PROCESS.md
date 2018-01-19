@@ -9,3 +9,7 @@
 ## dag 3 17-1-2018
 - fragment toegeovoegd voor een grafiek (graphview) en dit verbonden aan een button.
 - grafiek werkend gekregen met handmatig ingevoerde data
+
+## dag 4 18-1-2018
+- dak van de uva af
+- grafiekje werkend gekregen met json data

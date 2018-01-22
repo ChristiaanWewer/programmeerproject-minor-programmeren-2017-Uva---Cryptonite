@@ -1,7 +1,6 @@
 package com.dev.chris.cryptonite;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;

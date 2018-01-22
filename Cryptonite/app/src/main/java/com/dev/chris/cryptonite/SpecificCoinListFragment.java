@@ -44,10 +44,6 @@ public class SpecificCoinListFragment extends Fragment {
         return rootView;
     }
 
-
-
-
-
     private void networkRequest(RequestParams tries, String coinSymbol) {
         Log.d("coins", "networkJob() called");
         AsyncHttpClient client = new AsyncHttpClient();

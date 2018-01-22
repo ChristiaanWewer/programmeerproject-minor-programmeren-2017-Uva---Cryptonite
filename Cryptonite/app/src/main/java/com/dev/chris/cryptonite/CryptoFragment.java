@@ -161,6 +161,7 @@ public class CryptoFragment extends ListFragment {
 
     private void concatinatePriceUrl(int startPlaceInt, int lengthCryptoArrayList) {
 
+        int saveStartPlaceInt = startPlaceInt;
         String concatinatedUrlString = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=";
 
 //        concatinatedUrlString += "&tsyms=USD"; // in networkrequest3 doen
@@ -173,6 +174,7 @@ public class CryptoFragment extends ListFragment {
         if (cryptoArrayList2.get(startPlaceInt).equals(cryptoArrayList2.get(lengthCryptoArrayList))) {
             // request
             testNetworkConnect(concatinatedUrlString);
+
             return;
         }
 
@@ -207,6 +209,50 @@ public class CryptoFragment extends ListFragment {
     public void testNetworkConnect(String firstUrlPart) {
         firstUrlPart += "&tsyms=USD";
         Log.d("ifthiswasanetworkconnect", firstUrlPart);
+    }
+
+
+    private void networkRequest3(RequestParams tries, int saveStartPlaceInt, String urlForCrypto) {
+        Log.d("coins", "networkJob() called");
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.setTimeout(5000);
+        client.get(urlForCrypto, tries, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onStart() {
+                Log.e("Start", "started");
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                Log.d("success: ", response.toString());
+
+                try {
+                    setRestOfCoinData(response.getJSONObject("DISPLAY"), saveStartPlaceInt);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                Log.d("error: ", throwable.toString());
+            }
+        });
+    }
+
+    public void setRestOfCoinData(JSONObject httpRequestResponse, int saveStartPlaceInt) throws JSONException {
+
+        for (Iterator key = httpRequestResponse.keys(); key.hasNext();) {
+            JSONObject oneCoinJsonWithInfo = (JSONObject) httpRequestResponse.get(key.next().toString());
+            String priceString = oneCoinJsonWithInfo.getString("PRICE");
+            String changeString = oneCoinJsonWithInfo.getString("CHANGEPCTDAY");
+
+            cryptoArrayList2.get(saveStartPlaceInt).setPriceUsd(priceString);
+            cryptoArrayList2.get(saveStartPlaceInt).setChangeDay(changeString);
+
+            saveStartPlaceInt++;
+        }
     }
 
 }

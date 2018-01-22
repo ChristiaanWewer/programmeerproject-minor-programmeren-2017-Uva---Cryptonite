@@ -13,3 +13,9 @@
 ## dag 4 18-1-2018
 - dak van de uva af
 - grafiekje werkend gekregen met json data
+
+## dag 5 19-1-2018
+- begin aanpassen om enkel cryptocompare api te gebruiken. Op deze manier komen de getallen die weergegeven in beide activities overeen.
+
+## dag 6 22-1-2018
+- (bijna) klaar met de cryptocompare api voor het beginscherm.

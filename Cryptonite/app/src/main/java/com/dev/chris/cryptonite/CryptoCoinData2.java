@@ -11,10 +11,10 @@ public class CryptoCoinData2 {
 
     private String coinName;
     private int rank;
-    private double priceUsd;
+    private String priceUsd;
     private int dayVolumeUsd;
     private String symbol;
-    private float change24h;
+    private String changeDay;
     private String coinId;
 
     public static CryptoCoinData2 fromJson2(JSONObject jsonObject) {
@@ -23,7 +23,13 @@ public class CryptoCoinData2 {
         try {
 
             coinData2.coinName = jsonObject.getString("CoinName");
-            coinData2.symbol = jsonObject.getString("Symbol");
+
+            String symbolString = jsonObject.getString("Symbol");
+
+//            if (symbolString.endsWith("*")) {
+
+//            }
+            coinData2.symbol = symbolString.replace("*", "");
             coinData2.rank = Integer.parseInt(jsonObject.getString("SortOrder"));
 
         } catch (JSONException e) {
@@ -50,11 +56,11 @@ public class CryptoCoinData2 {
         this.rank = rank;
     }
 
-    public double getPriceUsd() {
+    public String getPriceUsd() {
         return priceUsd;
     }
 
-    public void setPriceUsd(double priceUsd) {
+    public void setPriceUsd(String priceUsd) {
         this.priceUsd = priceUsd;
     }
 
@@ -72,6 +78,14 @@ public class CryptoCoinData2 {
 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
+    }
+
+    public String getChangeDay() {
+        return changeDay;
+    }
+
+    public void setChangeDay(String changeDay) {
+        this.changeDay = changeDay;
     }
 
 }

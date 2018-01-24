@@ -26,8 +26,6 @@ public class FavoriteFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-
         // Inflate the layout for this fragment
         favoriteCryptoCoins = new ArrayList<>();
 
@@ -79,6 +77,7 @@ public class FavoriteFragment extends ListFragment {
         client.setTimeout(5000);
         String coinUrl = url;
         coinUrl += idString;
+
         Log.d("url", "url");
         client.get(coinUrl, tries, new JsonHttpResponseHandler() {
 
@@ -90,7 +89,6 @@ public class FavoriteFragment extends ListFragment {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 Log.d("success: ", response.toString());
-
 
                 CryptoCoinData aCoin = CryptoCoinData.fromJson(response, 0);
                 aCoin.setCoinId(idString);

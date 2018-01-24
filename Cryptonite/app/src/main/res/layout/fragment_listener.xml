@@ -6,10 +6,25 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ListView
-        android:id="@android:id/list"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    </ListView>
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1">
+
+        </ListView>
+
+        <Button
+            android:id="@+id/setListenerButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+    </LinearLayout>
+
 </FrameLayout>

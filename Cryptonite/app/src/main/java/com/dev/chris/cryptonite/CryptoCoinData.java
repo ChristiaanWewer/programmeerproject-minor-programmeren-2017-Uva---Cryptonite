@@ -3,6 +3,8 @@ package com.dev.chris.cryptonite;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
+
 /**
  * Created by chris on 4-1-2018.
  */
@@ -36,6 +38,7 @@ public class CryptoCoinData {
 
         return coinData;
     }
+
 
     public String getCoinName() {
         return coinName;

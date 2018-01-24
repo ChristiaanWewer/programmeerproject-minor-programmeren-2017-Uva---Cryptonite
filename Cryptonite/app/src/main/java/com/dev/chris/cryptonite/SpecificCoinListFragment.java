@@ -22,7 +22,6 @@ import cz.msebera.android.httpclient.Header;
 
 public class SpecificCoinListFragment extends Fragment {
 
-
     View rootView;
     String url;
 

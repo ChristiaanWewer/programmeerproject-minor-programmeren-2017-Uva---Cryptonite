@@ -19,3 +19,8 @@
 
 ## dag 6 22-1-2018
 - (bijna) klaar met de cryptocompare api voor het beginscherm.
+
+## dag 7 23-1-2018
+- net iets verder (bijna) klaar met de cryptocompare api voor het beginscherm.
+- begonnen met de listener, maar loopt niet fijn
+

@@ -15,6 +15,8 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
     public static String NAME = "favoriteCoinTable";
     public static String COL1 = "id";
     public static String COL2 = "name";
+    public static String COL3 = "setHighPrice";
+    public static String COL4 = "setLowPrice";
 
     private static FavoriteCoinDatabase instance;
 
@@ -34,7 +36,7 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
 
         // create table
         db.execSQL("CREATE TABLE " + NAME + "(" + COL1 + " TEXT, " +
-                COL2 + " TEXT)");
+                COL2 + " TEXT, " + COL3 + " INTEGER, " + COL4 + " INTEGER)");
     }
 
     @Override
@@ -72,7 +74,6 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
         ContentValues coinContentValues = new ContentValues();
         coinContentValues.put(COL1, coinId);
         coinContentValues.put(COL2, coinName);
-
         db.insert(NAME, null, coinContentValues);
     }
 

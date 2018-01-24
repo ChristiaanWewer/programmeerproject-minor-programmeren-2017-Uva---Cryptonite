@@ -24,3 +24,7 @@
 - net iets verder (bijna) klaar met de cryptocompare api voor het beginscherm.
 - begonnen met de listener, maar loopt niet fijn
 
+## dag 8 24-1-2018
+- zoekfunctie werkt
+- alleen favorieten refresht nu iedere 2 minuten
+- achtergrondlistener uit het project gehaald

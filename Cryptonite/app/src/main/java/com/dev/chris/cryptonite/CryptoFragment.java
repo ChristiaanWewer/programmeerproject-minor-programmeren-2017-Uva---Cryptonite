@@ -16,6 +16,9 @@ import org.json.JSONObject;
 import com.loopj.android.http.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -43,11 +46,28 @@ public class CryptoFragment extends ListFragment {
                             Bundle savedInstanceState) {
         Log.d("open fragment", "yes!");
 
-        View rootView = inflater.inflate(R.layout.fragment_crypto, container, false);;
+        View rootView = inflater.inflate(R.layout.fragment_crypto, container, false);
 
         RequestParams params = new RequestParams();
         params.put("limit", 10);
-        networkRequest(params);
+
+
+        // Schedule a task to run every 5 seconds with no initial delay.
+
+
+
+
+//        ScheduledExecutorService execService = Executors.newScheduledThreadPool(5);
+//        execService.scheduleAtFixedRate(new Runnable() {
+//            public void run() {
+//                Log.d("lets refresh coin list!", "soo refreshening!");
+
+                networkRequest(params);
+
+//            }
+//        }, 0L, 2L, TimeUnit.SECONDS);
+
+//        networkRequest(params);
 //        networkRequest2(params);
 //        networkRequest3(params,0, "w");
 
@@ -283,7 +303,7 @@ public class CryptoFragment extends ListFragment {
         AsyncHttpClient client = new AsyncHttpClient();
         client.setTimeout(5000);
 
-        urlForCrypto = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=42,365,404,611,808,888,1337,2015,BTC,LTC,DASH,XMR,NXT,ETC,DOGE,ZEC,BTS,XRP,BTCD,PPC,CRAIG,XBS,XPY,PRC,YBC,DANK,GIVE,KOBO,DT,CETI,SUP,XPD,GEO,CHASH,SPR,NXTI,WOLF,XDP,AC,ACOIN,AERO,ALF,AGS,AMC,ALN,APEX,ARCH,ARG,ARI,AUR,AXR,BCX&tsyms=USD";
+//        urlForCrypto = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=42,365,404,611,808,888,1337,2015,BTC,LTC,DASH,XMR,NXT,ETC,DOGE,ZEC,BTS,XRP,BTCD,PPC,CRAIG,XBS,XPY,PRC,YBC,DANK,GIVE,KOBO,DT,CETI,SUP,XPD,GEO,CHASH,SPR,NXTI,WOLF,XDP,AC,ACOIN,AERO,ALF,AGS,AMC,ALN,APEX,ARCH,ARG,ARI,AUR,AXR,BCX&tsyms=USD";
 
         client.get(urlForCrypto, tries, new JsonHttpResponseHandler() {
 

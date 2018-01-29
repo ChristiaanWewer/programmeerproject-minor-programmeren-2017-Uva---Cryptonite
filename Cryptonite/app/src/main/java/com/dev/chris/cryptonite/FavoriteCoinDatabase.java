@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import static com.loopj.android.http.AsyncHttpClient.log;
 
 /**
  * Created by chris on 11-1-2018.
@@ -13,13 +16,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class FavoriteCoinDatabase extends SQLiteOpenHelper {
 
     public static String NAME = "favoriteCoinTable";
-    public static String COL1 = "id";
-    public static String COL2 = "name";
-    public static String COL3 = "setHighPrice";
-    public static String COL4 = "setLowPrice";
+    public static String COL1 = "rank";
+    public static String COL2 = "symbol";
+    public static String COL3 = "name";
+
 
     private static FavoriteCoinDatabase instance;
-
 
     private FavoriteCoinDatabase(Context context, String name)
     {super(context, name, null, 1);}
@@ -35,8 +37,8 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         // create table
-        db.execSQL("CREATE TABLE " + NAME + "(" + COL1 + " TEXT, " +
-                COL2 + " TEXT, " + COL3 + " INTEGER, " + COL4 + " INTEGER)");
+        db.execSQL("CREATE TABLE " + NAME + "(" + COL1 + " INTEGER, " +
+                COL2 + " TEXT, " + COL3 + " TEXT)");
     }
 
     @Override
@@ -57,24 +59,30 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
 //        db.insert(NAME, null, coinContentValues);
 //    }
 
-    public void addCoinNameIdItem(String coinId, String coinName) {
+    public void addCoinRankSymbolName(int coinRank, String coinSymbol, String coinName) {
 
         // add coin to the database
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor selectIdFromDb = db.rawQuery("SELECT " + COL1 + " FROM " + NAME, null);
+        Cursor checkCursor = db.rawQuery("SELECT * FROM " + NAME, null);
 
-        while (selectIdFromDb.moveToNext()) {
-            String selectString = selectIdFromDb.getString(selectIdFromDb.getColumnIndex(FavoriteCoinDatabase.COL1));
-            if (selectString.equals(coinId)) {
+        Log.d("wtfCursor1", checkCursor.getColumnName(0));
+        Log.d("wtfCursor2", checkCursor.getColumnName(1));
+        Log.d("wtfCursor3", checkCursor.getColumnName(2));
+
+        while (checkCursor.moveToNext()) {
+                String selectString = checkCursor.getString(checkCursor.getColumnIndex(FavoriteCoinDatabase.COL2));
+            if (selectString.equals(coinSymbol)) {
                 return;
             }
         }
+        checkCursor.close();
 
-        ContentValues coinContentValues = new ContentValues();
-        coinContentValues.put(COL1, coinId);
-        coinContentValues.put(COL2, coinName);
-        db.insert(NAME, null, coinContentValues);
+        ContentValues cointentValues = new ContentValues();
+        cointentValues.put(COL1, coinRank);
+        cointentValues.put(COL2, coinSymbol);
+        cointentValues.put(COL3, coinName);
+        db.insert(NAME, null, cointentValues);
     }
 
     public void clearAll() {
@@ -84,13 +92,10 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + NAME);
     }
 
-    public Cursor selectId() {
+    public Cursor selectRankSymbolName() {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor selectIdFromDb = db.rawQuery("SELECT " + COL1 + " FROM " + NAME, null);
-
-//        Log.d("check", selectForFragmentDBCursor.getString(0));
-        return selectIdFromDb;
+        return db.rawQuery("SELECT * FROM " + NAME, null);
     }
 
     public void removeCoin(String coinName) {
@@ -104,8 +109,9 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
 //            if (selectString.equals(coinName)) {
 //                Log.d("coinname Found", "coinName Found!");
 //            }
+
 //        }
-        db.execSQL("DELETE FROM " + NAME + " WHERE " + COL2 + "=\"" + coinName + "\"");
+        db.execSQL("DELETE FROM " + NAME + " WHERE " + COL3 + "=\"" + coinName + "\"");
 
 
 

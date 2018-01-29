@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class CryptoAdapter extends ArrayAdapter {
     private Context context;
-    private ArrayList<CryptoCoinData> cryptoCoinData;
+    private ArrayList<CryptoCoinData2> cryptoCoinData;
 
-    public CryptoAdapter(Context context, ArrayList<CryptoCoinData> cryptoCoinData) {
+    public CryptoAdapter(Context context, ArrayList<CryptoCoinData2> cryptoCoinData) {
         super(context, R.layout.cryptocoin_row, cryptoCoinData);
 
         this.cryptoCoinData = cryptoCoinData;
@@ -38,8 +38,12 @@ public class CryptoAdapter extends ArrayAdapter {
 
         numberRowTextView.setText(String.valueOf(cryptoCoinData.get(position).getRank()));
         nameRowTextView.setText(cryptoCoinData.get(position).getCoinName());
-        priceRowTextView.setText(Double.toString(cryptoCoinData.get(position).getPriceUsd()));
-        priceChangeRowTextView.setText(Double.toString(cryptoCoinData.get(position).getChange24h()));
+        priceRowTextView.setText(cryptoCoinData.get(position).getPriceUsd());
+        priceChangeRowTextView.setText(cryptoCoinData.get(position).getChangeDay());
+
+//        priceRowTextView.setText(Double.toString(cryptoCoinData.get(position).getPriceUsd()));
+//        priceChangeRowTextView.setText(Double.toString(cryptoCoinData.get(position).getChange24h()));
+
 
 //        Log.d("adapter", "adapter is getting used");
 

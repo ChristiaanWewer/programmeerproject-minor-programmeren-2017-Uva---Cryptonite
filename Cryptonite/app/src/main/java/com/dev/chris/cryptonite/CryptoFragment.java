@@ -2,6 +2,7 @@ package com.dev.chris.cryptonite;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,9 +17,8 @@ import org.json.JSONObject;
 import com.loopj.android.http.*;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -30,12 +30,10 @@ public class CryptoFragment extends ListFragment {
     int maxApiUrlLenInt = 280;
 
     ArrayList<CryptoCoinData> cryptoArrayList = new ArrayList<>();
-
     Boolean search;
     String query;
-
+    Timer timer;
     ArrayList<CryptoCoinData2> cryptoArrayList2 = new ArrayList<>();
-
 
     //    ListView cryptoList;
     private FavoriteCoinDatabase favoriteCoinDatabase;
@@ -46,29 +44,25 @@ public class CryptoFragment extends ListFragment {
                             Bundle savedInstanceState) {
         Log.d("open fragment", "yes!");
 
+
+
+
+        timer = new Timer();
+
         View rootView = inflater.inflate(R.layout.fragment_crypto, container, false);
 
         RequestParams params = new RequestParams();
         params.put("limit", 10);
+        networkRequest(params);
+
+        try {
+            autoRefresher();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
-        // Schedule a task to run every 5 seconds with no initial delay.
-
-
-
-
-//        ScheduledExecutorService execService = Executors.newScheduledThreadPool(5);
-//        execService.scheduleAtFixedRate(new Runnable() {
-//            public void run() {
-//                Log.d("lets refresh coin list!", "soo refreshening!");
-
-                networkRequest(params);
-
-//            }
-//        }, 0L, 2L, TimeUnit.SECONDS);
-
-//        networkRequest(params);
-//        networkRequest2(params);
+        networkRequest2(params);
 //        networkRequest3(params,0, "w");
 
         Bundle bundle = this.getArguments();
@@ -88,18 +82,21 @@ public class CryptoFragment extends ListFragment {
 
         getListView().setOnItemLongClickListener((av, v, position, id) -> {
 
-            String coinName = cryptoArrayList.get(position).getCoinName();
-            String coinId = cryptoArrayList.get(position).getCoinId();
-            Log.d("COINID AND ITEM", coinId + coinName);
+            int coinRank = cryptoArrayList2.get(position).getRank();
+            String coinSymbol = cryptoArrayList2.get(position).getSymbol();
+            String coinName = cryptoArrayList2.get(position).getCoinName();
             favoriteCoinDatabase = FavoriteCoinDatabase.getInstance(getContext());
-            favoriteCoinDatabase.addCoinNameIdItem(coinId, coinName);
+
+            Log.d("rankSymbolName", Integer.toString(coinRank) + "  " + coinSymbol + "  " + coinName);
+            favoriteCoinDatabase.addCoinRankSymbolName(coinRank, coinSymbol, coinName);
             return true;
+
         });
 
     }
 
     private void networkRequest(RequestParams tries) {
-        Log.d("coins", "networkJob() called");
+//        Log.d("coins", "networkJob() called");
         AsyncHttpClient client = new AsyncHttpClient();
         client.setTimeout(5000);
         client.get(url, tries, new JsonHttpResponseHandler() {
@@ -126,7 +123,6 @@ public class CryptoFragment extends ListFragment {
                 if (search) {
                     searchCryptoCoinList = new ArrayList<>();
 
-
                     for (int i = 0; i < cryptoArrayList.size(); i++) {
                         CryptoCoinData cryptoCoinData = cryptoArrayList.get(i);
                         if (cryptoCoinData.getCoinName().matches("(?i:.*" + query + ".*)")) {
@@ -137,18 +133,12 @@ public class CryptoFragment extends ListFragment {
                         }
                     }
 
-                    cryptoAdapter = new CryptoAdapter(getActivity(), searchCryptoCoinList);
+//                    cryptoAdapter = new CryptoAdapter(getActivity(), searchCryptoCoinList);
 
                 }
                 else {
 
-
-//                Log.d("moresucces", cryptoArrayList.get(0).getCoinName());
-
-                    cryptoAdapter = new CryptoAdapter(getActivity(), cryptoArrayList);
                 }
-                    CryptoFragment.this.setListAdapter(cryptoAdapter);
-//                Log.d("cryptoadapter", cryptoAdapter.toString());
 
             }
 
@@ -163,14 +153,47 @@ public class CryptoFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        String symbolString = cryptoArrayList.get(position).getSymbol();
+        String symbolString = cryptoArrayList2.get(position).getSymbol();
         Intent intent = new Intent(getActivity(), SpecificCoinInfoActivity.class);
         intent.putExtra("coinSymbolString", symbolString);
         startActivity(intent);
     }
 
 
+    private void autoRefresher() throws InterruptedException {
 
+        final Handler handler = new Handler();
+//        Timer timer = new Timer();
+
+        TimerTask doAsynchronousTask = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        RequestParams params = new RequestParams();
+                        params.put("limit", 10);
+                        networkRequest(params);
+                    }
+                });
+            }
+        };
+
+        timer.schedule(doAsynchronousTask, 0, 10000);
+    }
+
+    @Override
+    public void onPause() {
+
+        timer.cancel();
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        timer.cancel();
+        super.onStop();
+    }
 
 
 
@@ -221,7 +244,9 @@ public class CryptoFragment extends ListFragment {
                     e.printStackTrace();
                 }
 
-                concatinatePriceUrl(0, cryptoArrayList2.size() - 1);
+//                concatinatePriceUrl(0, cryptoArrayList2.size() - 1, true, 0);
+
+                concatinatePriceUrl(0);
 //            Log.d("check coinname", cryptoArrayList2.get(0).getCoinName());
 
             }
@@ -234,76 +259,54 @@ public class CryptoFragment extends ListFragment {
     }
 
 
-    private void concatinatePriceUrl(int startPlaceInt, int lengthCryptoArrayList) {
+    private void concatinatePriceUrl(int startPlaceInt) {
 
-        int saveStartPlaceInt = startPlaceInt;
+
+        int endPlaceInt = startPlaceInt;
+
         String concatinatedUrlString = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=";
-
-        concatinatedUrlString += "&tsyms=USD"; // in networkrequest3 doen
 
         int urlLenInt = 0;
 
-        String symbolString = cryptoArrayList2.get(startPlaceInt).getSymbol();
-        concatinatedUrlString += symbolString;
+        while (urlLenInt < maxApiUrlLenInt && (endPlaceInt < cryptoArrayList2.size())) {
+//            Log.d("endPlaceInt, cryptoArrayList2.size()", Integer.toString(endPlaceInt) + "     " + Integer.toString(cryptoArrayList2.size()));
+            String symbolString = cryptoArrayList2.get(endPlaceInt).getSymbol();
+            concatinatedUrlString += "," + symbolString;
+            endPlaceInt++;
+            urlLenInt = concatinatedUrlString.length();
+        }
 
-        if (cryptoArrayList2.get(startPlaceInt).equals(cryptoArrayList2.get(lengthCryptoArrayList))) {
-            // request
-            testNetworkConnect(concatinatedUrlString);
+        RequestParams params = new RequestParams();
+        params.put("limit", 10);
+        networkRequest3(params, startPlaceInt, concatinatedUrlString);
 
-            RequestParams params = new RequestParams();
-            params.put("limit", 10);
-            networkRequest3(params, saveStartPlaceInt, concatinatedUrlString);
+//        testNetworkConnect(concatinatedUrlString, startPlaceInt);
+
+
+        if (!(endPlaceInt < cryptoArrayList2.size())) {
 
             return;
         }
+//        RequestParams params = new RequestParams();
+//        params.put("limit", 10);
+//        networkRequest3(params, startPlaceInt, concatinatedUrlString);
 
-        while (urlLenInt < maxApiUrlLenInt) {
-
-            startPlaceInt++;
-            urlLenInt = concatinatedUrlString.length();
-            symbolString = cryptoArrayList2.get(startPlaceInt).getSymbol();
-            concatinatedUrlString += "," + symbolString;
-
-            if (cryptoArrayList2.get(startPlaceInt).equals(cryptoArrayList2.get(lengthCryptoArrayList))) {
-                // request
-                testNetworkConnect(concatinatedUrlString);
-
-
-//                Log.d("CHECK1", "CHECK THIS");
-
-                RequestParams params = new RequestParams();
-                params.put("limit", 10);
-                networkRequest3(params, saveStartPlaceInt, concatinatedUrlString);
-                return;
-            }
-        }
-
-        if (!cryptoArrayList2.get(startPlaceInt).equals(cryptoArrayList2.get(lengthCryptoArrayList))) {
-            //request
-            testNetworkConnect(concatinatedUrlString);
-
-            RequestParams params = new RequestParams();
-            params.put("limit", 10);
-            networkRequest3(params, saveStartPlaceInt, concatinatedUrlString);
-
-            startPlaceInt++;
-            concatinatePriceUrl(startPlaceInt, lengthCryptoArrayList);
-        }
+        concatinatePriceUrl(endPlaceInt);
     }
 
 
-    public void testNetworkConnect(String firstUrlPart) {
+    public void testNetworkConnect(String firstUrlPart, int startPlaceInt) {
         firstUrlPart += "&tsyms=USD";
-        Log.d("ifthiswasanetworkconnect", firstUrlPart);
+        Log.d("ifthiswasanetworkconnect", Integer.toString(startPlaceInt) + "   " + firstUrlPart);
     }
 
 
     private void networkRequest3(RequestParams tries, int saveStartPlaceInt, String urlForCrypto) {
-        Log.d("coins", "networkJob() called");
+        Log.d("coins", "networkREQUEST3");
         AsyncHttpClient client = new AsyncHttpClient();
         client.setTimeout(5000);
 
-//        urlForCrypto = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=42,365,404,611,808,888,1337,2015,BTC,LTC,DASH,XMR,NXT,ETC,DOGE,ZEC,BTS,XRP,BTCD,PPC,CRAIG,XBS,XPY,PRC,YBC,DANK,GIVE,KOBO,DT,CETI,SUP,XPD,GEO,CHASH,SPR,NXTI,WOLF,XDP,AC,ACOIN,AERO,ALF,AGS,AMC,ALN,APEX,ARCH,ARG,ARI,AUR,AXR,BCX&tsyms=USD";
+        urlForCrypto += "&tsyms=USD"; // in networkrequest3 doen
 
         client.get(urlForCrypto, tries, new JsonHttpResponseHandler() {
 
@@ -314,13 +317,14 @@ public class CryptoFragment extends ListFragment {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("success: ", response.toString());
+//                Log.d("new one", response.toString());
 
                 try {
-                    setRestOfCoinData(response.getJSONObject("DISPLAY"), saveStartPlaceInt);
+                    setRestOfCoinData(response.getJSONObject("RAW"), saveStartPlaceInt);
 
 //                    Log.d("response", response.getJSONObject("DISPLAY").getJSONObject("USD").toString());
-                } catch (JSONException e) {
+                }
+                catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -337,15 +341,82 @@ public class CryptoFragment extends ListFragment {
         for (Iterator key = httpRequestResponse.keys(); key.hasNext();) {
             JSONObject oneCoinJsonWithInfo = (JSONObject) httpRequestResponse.get(key.next().toString());
 
-            Log.d("iteration", oneCoinJsonWithInfo.getJSONObject("USD").toString());
+//            Log.d("iteration", Integer.toString(saveStartPlaceInt) + ", " +cryptoArrayList2.get(saveStartPlaceInt).getSymbol() + ", " + oneCoinJsonWithInfo.getJSONObject("USD").getString("FROMSYMBOL"));
+
+
+            String testSymbolStringUpdateAPI = oneCoinJsonWithInfo.getJSONObject("USD").getString("FROMSYMBOL");
+            String testSymbolStringListAPI = cryptoArrayList2.get(saveStartPlaceInt).getSymbol();
+
+            while (!(testSymbolStringListAPI.equals(testSymbolStringUpdateAPI))) {
+
+                Log.d("check1", testSymbolStringListAPI + "  " + testSymbolStringUpdateAPI);
+                saveStartPlaceInt++;
+
+                if (saveStartPlaceInt > cryptoArrayList2.size() -1) {
+
+                    setCryptoAdapter();
+                    return;
+                }
+
+
+                testSymbolStringUpdateAPI = oneCoinJsonWithInfo.getJSONObject("USD").getString("FROMSYMBOL");
+                testSymbolStringListAPI = cryptoArrayList2.get(saveStartPlaceInt).getSymbol();
+
+                Log.d("check2", testSymbolStringListAPI + "  " + testSymbolStringUpdateAPI);
+
+
+
+            }
 
             String priceString = oneCoinJsonWithInfo.getJSONObject("USD").getString("PRICE");
             String changeString = oneCoinJsonWithInfo.getJSONObject("USD").getString("CHANGEPCTDAY");
 
-            cryptoArrayList2.get(saveStartPlaceInt - 1).setPriceUsd(priceString);
-            cryptoArrayList2.get(saveStartPlaceInt - 1).setChangeDay(changeString);
-
+            cryptoArrayList2.get(saveStartPlaceInt).setPriceUsd(priceString);
+            cryptoArrayList2.get(saveStartPlaceInt).setChangeDay(changeString);
             saveStartPlaceInt++;
         }
+
+        setCryptoAdapter();
+
+    }
+
+    public void setCryptoAdapter() {
+        ArrayList<CryptoCoinData2> searchCryptoCoinList;
+
+
+        if (search) {
+
+            searchCryptoCoinList = new ArrayList<>();
+
+
+            for (int i = 0; i < cryptoArrayList.size(); i++) {
+                CryptoCoinData2 cryptoCoinData = cryptoArrayList2.get(i);
+                if (cryptoCoinData.getCoinName().matches("(?i:.*" + query + ".*)")) {
+                    searchCryptoCoinList.add(cryptoCoinData);
+                }
+                else if (cryptoCoinData.getSymbol().matches("(?i:.*" + query + ".*)")) {
+                    searchCryptoCoinList.add(cryptoCoinData);
+                }
+            }
+
+            cryptoAdapter = new CryptoAdapter(getActivity(), searchCryptoCoinList);
+
+        }
+        else {
+
+
+//                Log.d("moresucces", cryptoArrayList.get(0).getCoinName());
+
+            cryptoAdapter = new CryptoAdapter(getActivity(), cryptoArrayList2);
+        }
+        CryptoFragment.this.setListAdapter(cryptoAdapter);
+//                Log.d("cryptoadapter", cryptoAdapter.toString());
+
+
+
+
+
+//        cryptoAdapter = new CryptoAdapter(getActivity(), cryptoArrayList2);
+//        CryptoFragment.this.setListAdapter(cryptoAdapter);
     }
 }

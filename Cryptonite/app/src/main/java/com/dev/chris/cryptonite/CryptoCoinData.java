@@ -18,6 +18,7 @@ public class CryptoCoinData {
     private String symbol;
     private float change24h;
     private String coinId;
+    private int coinFavIndex;
 
     public static CryptoCoinData fromJson(JSONArray jsonArray, int coinJsonObjectIndex) {
 
@@ -88,5 +89,11 @@ public class CryptoCoinData {
         return symbol;
     }
 
+    public void setCoinFavIndex(int coinFavIndex) {
+        this.coinFavIndex = coinFavIndex;
+    }
+    public int getCoinFavIndex() {
+        return coinFavIndex;
+    }
 
 }

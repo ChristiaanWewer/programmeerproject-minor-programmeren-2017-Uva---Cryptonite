@@ -13,6 +13,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -25,14 +27,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/goToGraphButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:text="Graph"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -46,14 +52,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/marketFromApiTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -66,14 +76,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/priceFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -86,14 +100,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/lastUpdateFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -106,14 +124,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/lastVolumeFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
 
@@ -127,14 +149,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/lastVolumeToFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -147,14 +173,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/lastTradedIdFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -167,14 +197,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/volume24HourFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -187,14 +221,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/volume24HourToFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -207,14 +245,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/open24HourFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -227,14 +269,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/high24HourFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -247,14 +293,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/low24HourFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -267,14 +317,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/change24HourFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -287,14 +341,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/changePct24HourFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -307,14 +365,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/changeDayFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -327,14 +389,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/changePctDayFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -347,14 +413,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/supplyFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -367,14 +437,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/mktCapFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -387,14 +461,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/totalVolume24HFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -407,14 +485,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/totalVolume24HToFromAPITextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@android:style/TextAppearance.Material.Large"
+                    android:textSize="18sp" />
             </LinearLayout>
 
 

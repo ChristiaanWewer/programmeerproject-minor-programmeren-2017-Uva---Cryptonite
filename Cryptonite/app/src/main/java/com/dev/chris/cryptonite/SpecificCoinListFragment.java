@@ -2,6 +2,7 @@ package com.dev.chris.cryptonite;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +19,9 @@ import com.loopj.android.http.RequestParams;
 
 import org.json.JSONObject;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import cz.msebera.android.httpclient.Header;
 
 public class SpecificCoinListFragment extends Fragment {
@@ -25,9 +29,13 @@ public class SpecificCoinListFragment extends Fragment {
     View rootView;
     String url;
 
+    Timer timer;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        timer = new Timer();
 
         rootView = inflater.inflate(R.layout.fragment_specific_coin_list, container, false);
 
@@ -36,12 +44,55 @@ public class SpecificCoinListFragment extends Fragment {
         Log.d("coinPartOfUrl", coinPartOfUrl);
         url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + coinPartOfUrl + "&tsyms=USD";
 
-        RequestParams specificParams = new RequestParams();
-        specificParams.put("limit", 10);
-        networkRequest(specificParams, coinPartOfUrl);
+//        RequestParams specificParams = new RequestParams();
+//        specificParams.put("limit", 10);
+//        networkRequest(specificParams, coinPartOfUrl);
+
+        try {
+            autoRefresher(coinPartOfUrl);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return rootView;
     }
+
+
+    private void autoRefresher(String coinSymbol) throws InterruptedException {
+
+        final Handler handler = new Handler();
+//        Timer timer = new Timer();
+
+        TimerTask doAsynchronousTask = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        RequestParams params = new RequestParams();
+                        params.put("limit", 10);
+                        networkRequest(params, coinSymbol);
+                    }
+                });
+            }
+        };
+
+        timer.schedule(doAsynchronousTask, 0, 2000);
+    }
+
+    @Override
+    public void onPause() {
+
+        timer.cancel();
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        timer.cancel();
+        super.onStop();
+    }
+
 
     private void networkRequest(RequestParams tries, String coinSymbol) {
         Log.d("coins", "networkJob() called");

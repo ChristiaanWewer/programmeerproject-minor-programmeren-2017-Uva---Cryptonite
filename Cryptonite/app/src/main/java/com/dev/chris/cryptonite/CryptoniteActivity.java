@@ -37,6 +37,7 @@ public class CryptoniteActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.actions, menu);
+
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.appBarSearch).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -74,6 +75,7 @@ public class CryptoniteActivity extends AppCompatActivity {
        Log.d("works", "works");
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+
         ft.addToBackStack(null);
 
         switch (item.getItemId()) {
@@ -86,6 +88,7 @@ public class CryptoniteActivity extends AppCompatActivity {
                break;
 
         }
+
        return super.onOptionsItemSelected(item);
     }
 }

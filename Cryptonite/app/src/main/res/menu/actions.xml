@@ -12,7 +12,8 @@
         android:id="@+id/goToFavoriteMenu"
         android:icon="@android:drawable/btn_star"
         android:title="Favorites"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom"
+        />
 
 
 </menu>

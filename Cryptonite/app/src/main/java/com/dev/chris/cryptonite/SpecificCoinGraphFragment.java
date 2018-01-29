@@ -3,6 +3,7 @@ package com.dev.chris.cryptonite;
 
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,9 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import cz.msebera.android.httpclient.Header;
 
 
@@ -29,12 +33,14 @@ public class SpecificCoinGraphFragment extends Fragment {
 
     String url;
 
-
+    Timer timer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        timer = new Timer();
 
         View rootView = inflater.inflate(R.layout.fragment_specific_coin_info_graph, container, false);
         String coinPartOfUrl = getActivity().getIntent().getStringExtra("coinSymbolString");
@@ -45,12 +51,59 @@ public class SpecificCoinGraphFragment extends Fragment {
 
 
 
-        RequestParams params = new RequestParams();
-        params.put("10", 10);
-        networkRequest(params);
+//        RequestParams params = new RequestParams();
+//        params.put("10", 10);
+//        networkRequest(params);
+
+        try {
+            autoRefresher();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return rootView;
     }
+
+
+    private void autoRefresher() throws InterruptedException {
+
+        final Handler handler = new Handler();
+//        Timer timer = new Timer();
+
+        TimerTask doAsynchronousTask = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        RequestParams params = new RequestParams();
+                        params.put("10", 10);
+                        networkRequest(params);
+                    }
+                });
+            }
+        };
+
+        timer.schedule(doAsynchronousTask, 0, 10000);
+    }
+
+    @Override
+    public void onPause() {
+
+        timer.cancel();
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        timer.cancel();
+        super.onStop();
+    }
+
+
+
+
+
 
     private void networkRequest(RequestParams tries) {
         Log.d("coins", "networkJob() called");
@@ -87,7 +140,6 @@ public class SpecificCoinGraphFragment extends Fragment {
                         calendar.setTimeInMillis(xPointUnixTimeStamp * 1000);
 
 //                        calendar.time
-
 
                         DataPoint newDataPoint = new DataPoint(calendar.getTime(), yPoint);
 

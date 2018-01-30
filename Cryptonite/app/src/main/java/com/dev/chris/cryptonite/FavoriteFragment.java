@@ -1,12 +1,9 @@
 package com.dev.chris.cryptonite;
 
-import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,7 +19,6 @@ import org.json.JSONObject;
 import com.loopj.android.http.*;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 import cz.msebera.android.httpclient.Header;
@@ -33,7 +29,7 @@ public class FavoriteFragment extends ListFragment {
     ArrayList<CryptoCoinData2> favoriteCryptoCoins;
     int maxApiUrlLenInt = 290;
     FavoriteCoinDatabase favoriteCoinDatabase;
-
+    APIHelper apiHelper;
     View rootView;
 
     Timer timer;
@@ -41,7 +37,9 @@ public class FavoriteFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        apiHelper = new APIHelper();
 
+        Log.d("favs loads?", "favs load");
         // Inflate the layout for this fragment
 //        favoriteCryptoCoins = new ArrayList<>();
         setHasOptionsMenu(true);
@@ -82,19 +80,19 @@ public class FavoriteFragment extends ListFragment {
         getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> av, View v, int position, long id) {
 
-                String coinName = favoriteCryptoCoins.get(position).getCoinName();
+                String coinSymbol = favoriteCryptoCoins.get(position).getSymbol();
                 favoriteCoinDatabase = FavoriteCoinDatabase.getInstance(getContext());
 
-                favoriteCoinDatabase.removeCoin(coinName);
+                favoriteCoinDatabase.removeCoinBySymbol(coinSymbol);
 
                 for (int i = 0, n = favoriteCryptoCoins.size(); i < n; i++) {
-                    if (favoriteCryptoCoins.get(i).getCoinName().equals(coinName)){
+                    if (favoriteCryptoCoins.get(i).getSymbol().equals(coinSymbol)){
                         favoriteCryptoCoins.remove(i);
                     }
                 }
 
-//                cryptoAdapter = new CryptoAdapter(getActivity(), favoriteCryptoCoins);
-//                FavoriteFragment.this.setListAdapter(cryptoAdapter);
+                favoriteAdapter = new CryptoAdapter(getActivity(), favoriteCryptoCoins);
+                FavoriteFragment.this.setListAdapter(favoriteAdapter);
                 return true;
             }
         });
@@ -160,8 +158,7 @@ public class FavoriteFragment extends ListFragment {
             favoriteCryptoCoins.add(aFavCoin);
         }
 
-
-        concatinatePriceUrl(0);
+       concatinatePriceUrl(0);
 
 //        final Handler handler = new Handler();
 ////        Timer timer = new Timer();
@@ -251,8 +248,8 @@ public class FavoriteFragment extends ListFragment {
                 try {
 
                     Log.d("fav network3 response", response.toString());
-                    setRestOfCoinData(response.getJSONObject("RAW"), saveStartPlaceInt);
-
+                    apiHelper.setRestOfCoinData(response, favoriteCryptoCoins, saveStartPlaceInt);
+                    setCryptoAdapter();
 //                    Log.d("response", response.getJSONObject("DISPLAY").getJSONObject("USD").toString());
                 }
                 catch (JSONException e) {
@@ -267,53 +264,7 @@ public class FavoriteFragment extends ListFragment {
         });
     }
 
-
-    public void setRestOfCoinData(JSONObject httpRequestResponse, int saveStartPlaceInt) throws JSONException {
-
-        for (Iterator key = httpRequestResponse.keys(); key.hasNext();) {
-            JSONObject oneCoinJsonWithInfo = (JSONObject) httpRequestResponse.get(key.next().toString());
-
-//            Log.d("iteration", Integer.toString(saveStartPlaceInt) + ", " +cryptoArrayList2.get(saveStartPlaceInt).getSymbol() + ", " + oneCoinJsonWithInfo.getJSONObject("USD").getString("FROMSYMBOL"));
-
-
-            String testSymbolStringUpdateAPI = oneCoinJsonWithInfo.getJSONObject("USD").getString("FROMSYMBOL");
-            String testSymbolStringListAPI = favoriteCryptoCoins.get(saveStartPlaceInt).getSymbol();
-
-            while (!(testSymbolStringListAPI.equals(testSymbolStringUpdateAPI))) {
-
-                Log.d("check1", testSymbolStringListAPI + "  " + testSymbolStringUpdateAPI);
-                saveStartPlaceInt++;
-
-                if (saveStartPlaceInt > favoriteCryptoCoins.size() -1) {
-
-                    setCryptoAdapter();
-                    return;
-                }
-
-
-                testSymbolStringUpdateAPI = oneCoinJsonWithInfo.getJSONObject("USD").getString("FROMSYMBOL");
-                testSymbolStringListAPI = favoriteCryptoCoins.get(saveStartPlaceInt).getSymbol();
-
-                Log.d("check2", testSymbolStringListAPI + "  " + testSymbolStringUpdateAPI);
-
-
-
-            }
-
-            String priceString = oneCoinJsonWithInfo.getJSONObject("USD").getString("PRICE");
-            String changeString = oneCoinJsonWithInfo.getJSONObject("USD").getString("CHANGEPCTDAY");
-
-            favoriteCryptoCoins.get(saveStartPlaceInt).setPriceUsd(priceString);
-            favoriteCryptoCoins.get(saveStartPlaceInt).setChangeDay(changeString);
-
-            saveStartPlaceInt++;
-        }
-
-        setCryptoAdapter();
-
-    }
     public void setCryptoAdapter() {
-
 
 
 //                Log.d("moresucces", cryptoArrayList.get(0).getCoinName());
@@ -330,9 +281,6 @@ public class FavoriteFragment extends ListFragment {
 //        cryptoAdapter = new CryptoAdapter(getActivity(), cryptoArrayList2);
 //        CryptoFragment.this.setListAdapter(cryptoAdapter);
     }
-
-
-
 
 
     @Override

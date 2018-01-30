@@ -98,7 +98,7 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM " + NAME, null);
     }
 
-    public void removeCoin(String coinName) {
+    public void removeCoinBySymbol(String coinSymbol) {
         SQLiteDatabase db = this.getReadableDatabase();
 
 //        Cursor selectIdFromDb = db.rawQuery("SELECT " + COL2 + " FROM " + NAME, null);
@@ -111,9 +111,7 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
 //            }
 
 //        }
-        db.execSQL("DELETE FROM " + NAME + " WHERE " + COL3 + "=\"" + coinName + "\"");
-
-
+        db.execSQL("DELETE FROM " + NAME + " WHERE " + COL2 + "=\"" + coinSymbol + "\"");
 
     }
 

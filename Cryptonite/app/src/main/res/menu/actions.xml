@@ -12,8 +12,13 @@
         android:id="@+id/goToFavoriteMenu"
         android:icon="@android:drawable/btn_star"
         android:title="Favorites"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         />
+    <item
+        android:id="@+id/refreshMenu"
+        android:icon="@android:drawable/ic_popup_sync"
+        android:title="Refresh"
+        app:showAsAction="always" />
 
 
 </menu>

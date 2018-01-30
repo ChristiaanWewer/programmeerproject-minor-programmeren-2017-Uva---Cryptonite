@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 
 public class CryptoAdapter extends ArrayAdapter {
+
     private Context context;
     private ArrayList<CryptoCoinData2> cryptoCoinData;
 

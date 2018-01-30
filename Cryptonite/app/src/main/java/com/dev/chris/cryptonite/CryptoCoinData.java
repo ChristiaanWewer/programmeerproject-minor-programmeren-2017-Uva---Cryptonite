@@ -24,11 +24,12 @@ public class CryptoCoinData {
 
         CryptoCoinData coinData = new CryptoCoinData();
         try {
-            coinData.coinName = jsonArray.getJSONObject(coinJsonObjectIndex).getString("name");
             coinData.rank = jsonArray.getJSONObject(coinJsonObjectIndex).getInt("rank");
+            coinData.symbol = jsonArray.getJSONObject(coinJsonObjectIndex).getString("symbol");
+            coinData.coinName = jsonArray.getJSONObject(coinJsonObjectIndex).getString("name");
+
             coinData.priceUsd = jsonArray.getJSONObject(coinJsonObjectIndex).getDouble("price_usd");;
             coinData.dayVolumeUsd = jsonArray.getJSONObject(coinJsonObjectIndex).getInt("24h_volume_usd");
-            coinData.symbol = jsonArray.getJSONObject(coinJsonObjectIndex).getString("symbol");
             coinData.change24h = jsonArray.getJSONObject(coinJsonObjectIndex).getInt("percent_change_24h");
             coinData.coinId = jsonArray.getJSONObject(coinJsonObjectIndex).getString("id");
 

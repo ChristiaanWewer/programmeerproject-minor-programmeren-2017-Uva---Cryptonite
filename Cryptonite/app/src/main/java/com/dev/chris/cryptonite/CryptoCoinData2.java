@@ -1,5 +1,6 @@
 package com.dev.chris.cryptonite;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,19 +19,24 @@ public class CryptoCoinData2 {
     private String coinId;
     private int coinFavIndex;
 
-    public static CryptoCoinData2 fromJson2(JSONObject jsonObject) {
+
+    public static CryptoCoinData2 fromJson2(JSONArray jsonArray, int coinJsonObjectIndexInt) {
 
         CryptoCoinData2 coinData2 = new CryptoCoinData2();
         try {
-            coinData2.coinName = jsonObject.getString("CoinName");
 
-            String symbolString = jsonObject.getString("Symbol");
-
-//            if (symbolString.endsWith("*")) {
-
-//            }
-            coinData2.symbol = symbolString; //.replace("*", "");
-            coinData2.rank = Integer.parseInt(jsonObject.getString("SortOrder"));
+            coinData2.rank = jsonArray.getJSONObject(coinJsonObjectIndexInt).getInt("rank");
+            coinData2.symbol = jsonArray.getJSONObject(coinJsonObjectIndexInt).getString("symbol");
+            coinData2.coinName = jsonArray.getJSONObject(coinJsonObjectIndexInt).getString("name");
+//            coinData2.coinName = jsonObject.getString("CoinName");
+//
+//            String symbolString = jsonObject.getString("Symbol");
+//
+////            if (symbolString.endsWith("*")) {
+//
+////            }
+//            coinData2.symbol = symbolString; //.replace("*", "");
+//            coinData2.rank = Integer.parseInt(jsonObject.getString("SortOrder"));
 
         } catch (JSONException e) {
             e.printStackTrace();

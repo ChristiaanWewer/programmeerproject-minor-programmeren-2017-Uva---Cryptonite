@@ -44,14 +44,20 @@ public class CryptoniteActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("search", true);
                 bundle.putString("query", query);
-                CryptoFragment cryptoFragment = new CryptoFragment();
-                cryptoFragment.setArguments(bundle);
+                CryptoFragment searchFragment = new CryptoFragment();
+                searchFragment.setArguments(bundle);
+
+                if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                    getSupportFragmentManager().popBackStackImmediate();
+                }
+
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.crypto_fragment_container, cryptoFragment,"search")
+                        .replace(R.id.crypto_fragment_container, searchFragment,"search")
                         .addToBackStack(null)
                         .commit();
 
@@ -73,6 +79,12 @@ public class CryptoniteActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
        Log.d("works", "works");
+
+
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStackImmediate();
+        }
+
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
@@ -84,9 +96,7 @@ public class CryptoniteActivity extends AppCompatActivity {
                FavoriteFragment favoriteFragment = new FavoriteFragment();
                ft.replace(R.id.crypto_fragment_container, favoriteFragment);
                ft.commit();
-
                break;
-
         }
 
        return super.onOptionsItemSelected(item);

@@ -109,7 +109,7 @@ public class SpecificCoinGraphFragment extends Fragment {
         Log.d("coins", "networkJob() called");
         AsyncHttpClient client = new AsyncHttpClient();
         client.setTimeout(50000);
-        Log.d("networkRequest starts", "yes it starts");
+        Log.d("networkRequest starts graph", "yes it starts");
         client.get(url, tries, new JsonHttpResponseHandler() {
 
             @Override

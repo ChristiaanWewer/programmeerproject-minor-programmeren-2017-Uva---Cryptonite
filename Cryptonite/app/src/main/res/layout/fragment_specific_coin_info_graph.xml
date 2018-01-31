@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     tools:context="com.dev.chris.cryptonite.SpecificCoinGraphFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

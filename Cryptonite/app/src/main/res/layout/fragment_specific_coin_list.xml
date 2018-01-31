@@ -2,9 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dev.chris.cryptonite.SpecificCoinListFragment">
+    tools:context="com.dev.chris.cryptonite.SpecificCoinInfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,7 +26,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -36,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Graph"
+                    android:text="@string/graph"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -52,7 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/market"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -61,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -76,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/price"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -85,7 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -100,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/last_update"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -109,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -124,7 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/last_volume"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -133,7 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -149,7 +148,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/last_volume"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -158,7 +157,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -173,7 +172,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/last_trade_id"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -182,7 +181,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -197,7 +196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/volume_last_24h"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -206,7 +205,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -221,7 +220,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/volume_last_24h"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -230,7 +229,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -245,7 +244,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/open_24h"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -254,7 +253,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -269,7 +268,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/high_24h"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -278,7 +277,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -293,7 +292,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/low_24h"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -302,7 +301,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="Loading..."
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -317,7 +316,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/change_24h"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -326,7 +325,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -341,7 +340,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/change_24h"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -350,7 +349,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -365,7 +364,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/change_day"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -374,7 +373,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -389,7 +388,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/change_day"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -398,7 +397,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -413,7 +412,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/supply"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -422,7 +421,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -437,7 +436,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/market_capacity"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -446,7 +445,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -461,7 +460,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/volume_24h"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -470,7 +469,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -485,7 +484,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/volume_24h"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
 
@@ -494,12 +493,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/loading"
                     android:textAppearance="@android:style/TextAppearance.Material.Large"
                     android:textSize="18sp" />
             </LinearLayout>
-
-
 
 
         </LinearLayout>

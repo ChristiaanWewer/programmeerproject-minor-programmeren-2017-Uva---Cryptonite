@@ -12,17 +12,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by chris on 3-1-2018.
+ * Christiaan Wewer
+ * 11943858
+ * Adapter for lists for crypto information.
  */
 
 public class CryptoAdapter extends ArrayAdapter {
 
     private Context context;
-    private ArrayList<CryptoCoinData2> cryptoCoinData;
+    private ArrayList<CryptoCoinDataModel> cryptoCoinData;
 
-    public CryptoAdapter(Context context, ArrayList<CryptoCoinData2> cryptoCoinData) {
+    CryptoAdapter(Context context, ArrayList<CryptoCoinDataModel> cryptoCoinData) {
         super(context, R.layout.cryptocoin_row, cryptoCoinData);
-
         this.cryptoCoinData = cryptoCoinData;
         this.context = context;
     }
@@ -30,25 +31,19 @@ public class CryptoAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.cryptocoin_row, parent, false);
+        View rootView = layoutInflater.inflate(R.layout.cryptocoin_row, parent, false);
 
-        TextView numberRowTextView = view.findViewById(R.id.numberRowTextView);
-        TextView nameRowTextView = view.findViewById(R.id.nameRowTextView);
-        TextView priceRowTextView = view.findViewById(R.id.priceRowTextView);
-        TextView priceChangeRowTextView = view.findViewById(R.id.priceChangeRowTextView);
+        TextView numberRowTextView = rootView.findViewById(R.id.numberRowTextView);
+        TextView nameRowTextView = rootView.findViewById(R.id.nameRowTextView);
+        TextView priceRowTextView = rootView.findViewById(R.id.priceRowTextView);
+        TextView priceChangeRowTextView = rootView.findViewById(R.id.priceChangeRowTextView);
 
         numberRowTextView.setText(String.valueOf(cryptoCoinData.get(position).getRank()));
         nameRowTextView.setText(cryptoCoinData.get(position).getCoinName());
         priceRowTextView.setText(cryptoCoinData.get(position).getPriceUsd());
         priceChangeRowTextView.setText(cryptoCoinData.get(position).getChangeDay());
 
-//        priceRowTextView.setText(Double.toString(cryptoCoinData.get(position).getPriceUsd()));
-//        priceChangeRowTextView.setText(Double.toString(cryptoCoinData.get(position).getChange24h()));
-
-
-//        Log.d("adapter", "adapter is getting used");
-
-        return view;
+        return rootView;
     }
 
 }

@@ -12,23 +12,30 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
+/**
+ * Christiaan Wewer
+ * 11943858
+ * Main activity for CoinOverviewListFragment and FavoriteCoinListFragment
+ */
+
 public class CryptoniteActivity extends AppCompatActivity {
+
+    SearchView searchView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cryptonite);
 
+        // load CoinOverviewistFragment
         Bundle bundle = new Bundle();
         bundle.putBoolean("search", false);
-
         Log.d("oncreate", "it works");
         FragmentManager fm = getSupportFragmentManager();
-        CryptoFragment cryptoFragment = new CryptoFragment();
-        Log.d("fragment", cryptoFragment.toString());
-        cryptoFragment.setArguments(bundle);
+        CoinOverviewListFragment coinOverviewListFragment = new CoinOverviewListFragment();
+        Log.d("fragment", coinOverviewListFragment.toString());
+        coinOverviewListFragment.setArguments(bundle);
         FragmentTransaction ft = fm.beginTransaction();
-
-        ft.replace(R.id.crypto_fragment_container, cryptoFragment);
+        ft.replace(R.id.crypto_fragment_container, coinOverviewListFragment);
         ft.commit();
 
     }
@@ -38,64 +45,63 @@ public class CryptoniteActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.actions, menu);
 
+        // get search view
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.appBarSearch).getActionView();
+        searchView = (SearchView) menu.findItem(R.id.appBarSearch).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
+        searchView.setOnQueryTextListener(new onSearchListener());
+        return true;
+    }
 
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("search", true);
-                bundle.putString("query", query);
-                CryptoFragment searchFragment = new CryptoFragment();
-                searchFragment.setArguments(bundle);
+    public class onSearchListener implements SearchView.OnQueryTextListener {
+
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+
+            // load CoinOverviewListFragment as search
+            Log.d("komikhierweldetweedekeerIN", "JAAAAAAAAAAAAAAAAAAA");
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("search", true);
+            bundle.putString("query", query);
+            CoinOverviewListFragment searchFragment = new CoinOverviewListFragment();
+            searchFragment.setArguments(bundle);
+
+            if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                getSupportFragmentManager().popBackStackImmediate();
+            }
+
+            searchView.setQuery("", false);
+            searchView.onActionViewCollapsed();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.crypto_fragment_container, searchFragment,"search")
+                    .addToBackStack(null)
+                    .commit();
+            return false;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String newText) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.goToFavoriteMenu:
+                // load favorite fragment
 
                 if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
                     getSupportFragmentManager().popBackStackImmediate();
                 }
 
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.crypto_fragment_container, searchFragment,"search")
-                        .addToBackStack(null)
-                        .commit();
-
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-
-        });
-
-        return super.onCreateOptionsMenu(menu);
-
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-       Log.d("works", "works");
-
-
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStackImmediate();
-        }
-
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-
-        ft.addToBackStack(null);
-
-        switch (item.getItemId()) {
-           case R.id.goToFavoriteMenu:
-
-               FavoriteFragment favoriteFragment = new FavoriteFragment();
-               ft.replace(R.id.crypto_fragment_container, favoriteFragment);
-               ft.commit();
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.addToBackStack(null);
+                FavoriteCoinListFragment favoriteCoinListFragment = new FavoriteCoinListFragment();
+                ft.replace(R.id.crypto_fragment_container, favoriteCoinListFragment);
+                ft.commit();
                break;
         }
 

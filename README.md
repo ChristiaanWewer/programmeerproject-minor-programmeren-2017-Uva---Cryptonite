@@ -14,7 +14,7 @@ Omschrijving: Applicatie om  prijzen van cryptomunten te bekijken
 
 # Copyright statement
 Dit project is ontwikkeld door Christiaan W. en is ook eigendom van Christiaan W. Zie de License file voor meer info.
-
+https://github.com/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uva---Cryptonite/blob/master/LICENSE
 
 # Doelgroep
 Als een persoon in kwestie cryptomunten heeft en de koersen actief in de gaten wil houden, heeft deze gene hier een Android applicatie voor nodig.

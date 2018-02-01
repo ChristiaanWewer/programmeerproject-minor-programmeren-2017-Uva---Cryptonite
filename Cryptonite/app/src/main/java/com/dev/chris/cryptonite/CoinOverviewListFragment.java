@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +36,7 @@ public class CoinOverviewListFragment extends ListFragment implements ResponseHa
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
 
         // get bundle and see if there is a search request or not
         networkAndMergeInfoClass.delegate = this;
@@ -43,10 +45,6 @@ public class CoinOverviewListFragment extends ListFragment implements ResponseHa
         Bundle bundle = this.getArguments();
         search = bundle.getBoolean("search");
         Log.d("searchbundle", search.toString());
-
-        if (bundle.getString("query") != null) {
-            Log.d("querybundle", bundle.getString("query"));
-        }
 
         if (!search) {
             networkAndMergeInfoClass.networkRequest(cryptoCoinArrayList);
@@ -73,6 +71,7 @@ public class CoinOverviewListFragment extends ListFragment implements ResponseHa
                     networkAndMergeInfoClass.
                             generateLongestPossibleUrlAlgorithm(searchCryptoCoinList, 0);
                 }
+
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -107,6 +106,20 @@ public class CoinOverviewListFragment extends ListFragment implements ResponseHa
             favoriteCoinDatabase.addCoinRankSymbolName(coinRank, coinSymbol, coinName);
 
             return false;
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        MenuItem searchBarMenuItem = menu.findItem(R.id.appBarSearch);
+
+        if (search) {
+            searchBarMenuItem.setVisible(false);
+        }
+        else {
+            searchBarMenuItem.setVisible(true);
         }
     }
 

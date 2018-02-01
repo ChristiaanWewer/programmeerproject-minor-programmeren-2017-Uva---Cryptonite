@@ -115,7 +115,8 @@ public class SpecificCoinGraphFragment extends Fragment {
 
             for (int i = 0, n = priceJsonArray.length(); i < n; i++) {
                 Calendar calendar = Calendar.getInstance();
-                long xPointUnixTimeStamp = Integer.parseInt(priceJsonArray.getJSONObject(i).getString("time"));
+                long xPointUnixTimeStamp = Integer.parseInt(priceJsonArray.getJSONObject(i)
+                        .getString("time"));
                 float yPoint = Float.parseFloat(priceJsonArray.getJSONObject(i).getString("close"));
                 calendar.setTimeInMillis(xPointUnixTimeStamp * 1000);
                 DataPoint newDataPoint = new DataPoint(calendar.getTime(), yPoint);

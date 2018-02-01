@@ -21,9 +21,12 @@ class CryptoCoinDataModel {
         CryptoCoinDataModel coinData2 = new CryptoCoinDataModel();
 
         try {
-            coinData2.rank = jsonArray.getJSONObject(coinJsonObjectIndexInt).getInt("rank");
-            coinData2.symbol = jsonArray.getJSONObject(coinJsonObjectIndexInt).getString("symbol");
-            coinData2.coinName = jsonArray.getJSONObject(coinJsonObjectIndexInt).getString("name");
+            coinData2.rank = jsonArray.getJSONObject(coinJsonObjectIndexInt)
+                    .getInt("rank");
+            coinData2.symbol = jsonArray.getJSONObject(coinJsonObjectIndexInt)
+                    .getString("symbol");
+            coinData2.coinName = jsonArray.getJSONObject(coinJsonObjectIndexInt)
+                    .getString("name");
         }
         catch (JSONException e) {
             e.printStackTrace();

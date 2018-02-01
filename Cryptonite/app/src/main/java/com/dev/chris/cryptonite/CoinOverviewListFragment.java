@@ -57,7 +57,6 @@ public class CoinOverviewListFragment extends ListFragment implements ResponseHa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.refreshMenu:
 
@@ -103,14 +102,13 @@ public class CoinOverviewListFragment extends ListFragment implements ResponseHa
                 Toast.makeText(getActivity(), "Coin added to favorites", Toast.LENGTH_LONG)
                         .show();
             }
-            return false;
+            return true;
         }
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
         MenuItem searchBarMenuItem = menu.findItem(R.id.appBarSearch);
 
         if (search) {

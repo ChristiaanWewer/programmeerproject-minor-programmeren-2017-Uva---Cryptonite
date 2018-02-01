@@ -30,7 +30,8 @@ public class CryptoAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rootView = layoutInflater.inflate(R.layout.cryptocoin_row, parent, false);
 
         TextView numberRowTextView = rootView.findViewById(R.id.numberRowTextView);

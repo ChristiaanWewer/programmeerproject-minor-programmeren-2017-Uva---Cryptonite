@@ -53,13 +53,15 @@ class NetworkAndMergeInfoClass {
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+            public void onFailure(int statusCode, Header[] headers, String responseString,
+                                  Throwable throwable) {
                 Log.e("error: ", throwable.toString());
             }
         });
     }
 
-    void generateLongestPossibleUrlAlgorithm(ArrayList<CryptoCoinDataModel> cryptoArrayList, int startPlaceInt) {
+    void generateLongestPossibleUrlAlgorithm(ArrayList<CryptoCoinDataModel> cryptoArrayList,
+                                             int startPlaceInt) {
 
         int lastPlaceInt = startPlaceInt;
         String concatinatedUrlString = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=";
@@ -83,7 +85,8 @@ class NetworkAndMergeInfoClass {
         generateLongestPossibleUrlAlgorithm(cryptoArrayList, lastPlaceInt);
     }
 
-    private void networkRequestSpecificInfo(ArrayList<CryptoCoinDataModel> cryptoCoinArrayList, int saveStartPlaceInt, String urlForCrypto) {
+    private void networkRequestSpecificInfo(ArrayList<CryptoCoinDataModel> cryptoCoinArrayList,
+                                            int saveStartPlaceInt, String urlForCrypto) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.setTimeout(5000);
         urlForCrypto += "&tsyms=USD";
@@ -96,7 +99,6 @@ class NetworkAndMergeInfoClass {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-
                 try {
                     setSpecificCoinDataAlgorithm(cryptoCoinArrayList, response, saveStartPlaceInt);
                 }
@@ -112,15 +114,19 @@ class NetworkAndMergeInfoClass {
         });
     }
 
-    private void setSpecificCoinDataAlgorithm(ArrayList<CryptoCoinDataModel> cryptoCoinArrayList, JSONObject httpRequestResponse, int saveStartPlaceInt) throws JSONException {
+    private void setSpecificCoinDataAlgorithm(ArrayList<CryptoCoinDataModel> cryptoCoinArrayList,
+                                              JSONObject httpRequestResponse, int saveStartPlaceInt)
+            throws JSONException {
         JSONObject jsonObjectForKey = httpRequestResponse.getJSONObject("RAW");
 
         // get info for listview from JSON
         for (Iterator key = jsonObjectForKey.keys(); key.hasNext();) {
             String keyNext = key.next().toString();
             JSONObject oneRawCoinJsonObject = (JSONObject) jsonObjectForKey.get(keyNext);
-            JSONObject oneDisplayCoinJsonObject = (JSONObject) httpRequestResponse.getJSONObject(displayString).get(keyNext);
-            String testSymbolStringUpdateAPI = oneRawCoinJsonObject.getJSONObject(fiatCurrencyString).getString("FROMSYMBOL");
+            JSONObject oneDisplayCoinJsonObject = (JSONObject) httpRequestResponse
+                    .getJSONObject(displayString).get(keyNext);
+            String testSymbolStringUpdateAPI = oneRawCoinJsonObject
+                    .getJSONObject(fiatCurrencyString).getString("FROMSYMBOL");
             String testSymbolStringListAPI = cryptoCoinArrayList.get(saveStartPlaceInt).getSymbol();
 
             // check if coins match and if not, try next one
@@ -133,13 +139,16 @@ class NetworkAndMergeInfoClass {
                     delegate.NetworkHandler(cryptoCoinArrayList);
                 }
 
-                testSymbolStringUpdateAPI = oneRawCoinJsonObject.getJSONObject(fiatCurrencyString).getString("FROMSYMBOL");
+                testSymbolStringUpdateAPI = oneRawCoinJsonObject.getJSONObject(fiatCurrencyString).
+                        getString("FROMSYMBOL");
                 testSymbolStringListAPI = cryptoCoinArrayList.get(saveStartPlaceInt).getSymbol();
             }
 
             // set further coin info
-            String priceString = oneDisplayCoinJsonObject.getJSONObject(fiatCurrencyString).getString("PRICE");
-            String changeString = oneDisplayCoinJsonObject.getJSONObject(fiatCurrencyString).getString("CHANGEPCTDAY");
+            String priceString = oneDisplayCoinJsonObject.getJSONObject(fiatCurrencyString)
+                    .getString("PRICE");
+            String changeString = oneDisplayCoinJsonObject.getJSONObject(fiatCurrencyString)
+                    .getString("CHANGEPCTDAY");
             cryptoCoinArrayList.get(saveStartPlaceInt).setPriceUsd(priceString);
             cryptoCoinArrayList.get(saveStartPlaceInt).setChangeDay(changeString);
             saveStartPlaceInt++;

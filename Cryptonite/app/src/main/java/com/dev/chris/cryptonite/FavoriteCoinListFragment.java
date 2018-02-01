@@ -115,10 +115,11 @@ public class FavoriteCoinListFragment extends ListFragment implements ResponseHa
             favoriteCoinDatabase = FavoriteCoinDatabase.getInstance(getContext());
             favoriteCoinDatabase.removeCoinBySymbol(coinSymbol);
             favoriteCryptoCoins.remove(position);
-            Toast.makeText(getActivity(), "Coin removed from favorites", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Coin removed from favorites",
+                    Toast.LENGTH_LONG).show();
             favoriteAdapter = new CryptoAdapter(getActivity(), favoriteCryptoCoins);
             FavoriteCoinListFragment.this.setListAdapter(favoriteAdapter);
-            return false;
+            return true;
         }
     }
 

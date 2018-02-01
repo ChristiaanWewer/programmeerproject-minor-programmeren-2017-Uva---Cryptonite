@@ -54,7 +54,8 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
         Cursor checkCursor = db.rawQuery("SELECT * FROM " + NAME, null);
 
         while (checkCursor.moveToNext()) {
-                String selectString = checkCursor.getString(checkCursor.getColumnIndex(FavoriteCoinDatabase.COL2));
+                String selectString = checkCursor.getString(checkCursor
+                        .getColumnIndex(FavoriteCoinDatabase.COL2));
             if (selectString.equals(coinSymbol)) {
                 return false;
             }

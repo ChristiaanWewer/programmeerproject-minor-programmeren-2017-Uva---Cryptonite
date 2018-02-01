@@ -163,12 +163,14 @@ public class SpecificCoinInfoFragment extends Fragment {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
 
                 // load specific coin data into the model and show it
-                SpecificCryptoCoinDataModel specificCoin = SpecificCryptoCoinDataModel.fromJson(response, coinSymbol);
+                SpecificCryptoCoinDataModel specificCoin = SpecificCryptoCoinDataModel
+                        .fromJson(response, coinSymbol);
                 setFragmentUI(specificCoin);
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+            public void onFailure(int statusCode, Header[] headers, String responseString,
+                                  Throwable throwable) {
                 Log.e("error: ", throwable.toString());
             }
         });
@@ -188,13 +190,16 @@ public class SpecificCoinInfoFragment extends Fragment {
         TextView high24HourTextView = rootView.findViewById(R.id.high24HourFromAPITextView);
         TextView low24HourTextView = rootView.findViewById(R.id.low24HourFromAPITextView);
         TextView change24HourTextView = rootView.findViewById(R.id.change24HourFromAPITextView);
-        TextView changePct24HourTextView = rootView.findViewById(R.id.changePct24HourFromAPITextView);
+        TextView changePct24HourTextView = rootView
+                .findViewById(R.id.changePct24HourFromAPITextView);
         TextView changeDayTextView = rootView.findViewById(R.id.changeDayFromAPITextView);
         TextView changePctDayTextView = rootView.findViewById(R.id.changePctDayFromAPITextView);
         TextView supplyTextView = rootView.findViewById(R.id.supplyFromAPITextView);
         TextView mktCapTextView = rootView.findViewById(R.id.mktCapFromAPITextView);
-        TextView totalVolume24HourTextView = rootView.findViewById(R.id.totalVolume24HFromAPITextView);
-        TextView totalVolume24HourToTextView = rootView.findViewById(R.id.totalVolume24HToFromAPITextView);
+        TextView totalVolume24HourTextView = rootView
+                .findViewById(R.id.totalVolume24HFromAPITextView);
+        TextView totalVolume24HourToTextView = rootView
+                .findViewById(R.id.totalVolume24HToFromAPITextView);
 
         marketTextView.setText(specificCoin.getMarket());
         priceTextView.setText(specificCoin.getPrice());

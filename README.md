@@ -26,7 +26,7 @@ Een applicatie waarmee de prijzen van cryptomunten realtime in garfiekvorm bekek
 <img src="https://github.com/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uva---Cryptonite/blob/master/doc/Overview.png" alt="Screenshot Cryptonite main/search" width="200px">
 <img src="https://github.com/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uva---Cryptonite/blob/master/doc/Favorites.png" alt="Screenshot Cryptonite favorite" width="200px">
 <img src="https://github.com/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uva---Cryptonite/blob/master/doc/Search.png" alt="Screenshot Cryptonite main/search" width="200px">
-<img src="https://github.com/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uva---Cryptonite/blob/master/doc/SpecificInfo.png" alt="Screenshot Cryptonite specific info" width="200px">
+<img src="https://github.com/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uva---Cryptonite/blob/master/doc/Specificinfo.png" alt="Screenshot Cryptonite specific info" width="200px">
 <img src="https://github.com/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uva---Cryptonite/blob/master/doc/Graph.png" alt="Screenshot Cryptonite graph info" width="200px">
 
 

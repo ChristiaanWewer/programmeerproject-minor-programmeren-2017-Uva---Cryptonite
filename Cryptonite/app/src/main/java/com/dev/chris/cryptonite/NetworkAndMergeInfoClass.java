@@ -30,7 +30,6 @@ class NetworkAndMergeInfoClass {
     private String fiatCurrencyString = "USD";
 
     void networkRequest(ArrayList<CryptoCoinDataModel> cryptoCoinArrayList) {
-        cryptoCoinArrayList.removeAll(cryptoCoinArrayList);
         AsyncHttpClient client = new AsyncHttpClient();
         client.setTimeout(5000);
         client.get(url, new JsonHttpResponseHandler() {
@@ -54,7 +53,7 @@ class NetworkAndMergeInfoClass {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                Log.d("error: ", throwable.toString());
+                Log.e("error: ", throwable.toString());
             }
         });
     }
@@ -107,7 +106,7 @@ class NetworkAndMergeInfoClass {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                Log.d("error: ", throwable.toString());
+                Log.e("error: ", throwable.toString());
             }
         });
     }
@@ -136,7 +135,6 @@ class NetworkAndMergeInfoClass {
 
                 testSymbolStringUpdateAPI = oneRawCoinJsonObject.getJSONObject(fiatCurrencyString).getString("FROMSYMBOL");
                 testSymbolStringListAPI = cryptoCoinArrayList.get(saveStartPlaceInt).getSymbol();
-
             }
 
             // set further coin info
@@ -147,7 +145,6 @@ class NetworkAndMergeInfoClass {
             saveStartPlaceInt++;
         }
 
-        Log.d("justbeforedelegate", cryptoCoinArrayList.get(0).getCoinName());
         delegate.NetworkHandler(cryptoCoinArrayList);
     }
 

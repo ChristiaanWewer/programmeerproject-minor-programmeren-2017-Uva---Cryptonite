@@ -3,7 +3,6 @@ package com.dev.chris.cryptonite;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -40,17 +40,14 @@ public class CoinOverviewListFragment extends ListFragment implements ResponseHa
 
         // get bundle and see if there is a search request or not
         networkAndMergeInfoClass.delegate = this;
-        Log.d("open fragment", "yes!");
         setHasOptionsMenu(true);
         Bundle bundle = this.getArguments();
         search = bundle.getBoolean("search");
-        Log.d("searchbundle", search.toString());
 
         if (!search) {
             networkAndMergeInfoClass.networkRequest(cryptoCoinArrayList);
         }
         else {
-            Log.d("SEARCH PLS", "SEARCH");
             query = bundle.getString("query");
             setCryptoAdapter(true);
         }
@@ -65,9 +62,10 @@ public class CoinOverviewListFragment extends ListFragment implements ResponseHa
             case R.id.refreshMenu:
 
                 if (!search) {
+                    cryptoCoinArrayList = new ArrayList<>();
                     networkAndMergeInfoClass.networkRequest(cryptoCoinArrayList);
-                } else if(searchCryptoCoinList != null) {
-                    Log.d("searchCryptoCoinList", searchCryptoCoinList.get(0).getCoinName());
+                }
+                else if (searchCryptoCoinList != null) {
                     networkAndMergeInfoClass.
                             generateLongestPossibleUrlAlgorithm(searchCryptoCoinList, 0);
                 }
@@ -101,10 +99,8 @@ public class CoinOverviewListFragment extends ListFragment implements ResponseHa
             int coinRank = favoriteCryptoCoinList.get(position).getRank();
             String coinSymbol = favoriteCryptoCoinList.get(position).getSymbol();
             String coinName = favoriteCryptoCoinList.get(position).getCoinName();
-
-            Log.d("rankSymbolName", Integer.toString(coinRank) + "  " + coinSymbol + "  " + coinName);
             favoriteCoinDatabase.addCoinRankSymbolName(coinRank, coinSymbol, coinName);
-
+            Toast.makeText(getActivity(), "Coin added to favorites", Toast.LENGTH_LONG).show();
             return false;
         }
     }
@@ -125,7 +121,6 @@ public class CoinOverviewListFragment extends ListFragment implements ResponseHa
 
     @Override
     public void NetworkHandler(ArrayList<CryptoCoinDataModel> networkCoinArrayList) {
-        Log.d("waiter works", "waiter works");
         cryptoCoinArrayList = networkCoinArrayList;
         setCryptoAdapter(false);
     }
@@ -154,8 +149,6 @@ public class CoinOverviewListFragment extends ListFragment implements ResponseHa
     }
 
     public void setCryptoAdapter(boolean searchBoolean) {
-        Log.d("searchboolean", Boolean.toString(searchBoolean));
-
         if (searchBoolean) {
             searchCryptoCoinList = new ArrayList<>();
 

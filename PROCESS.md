@@ -27,4 +27,28 @@
 ## dag 8 24-1-2018
 - zoekfunctie werkt
 - alleen favorieten refresht nu iedere 2 minuten
-- achtergrondlistener uit het project gehaald
+- achtergrondlistener voor als app gesloten is uit het project gehaald
+
+## dag 9 24-1-2018
+- bugfixes
+
+## dag 10 25-1-2018
+- asynchrone timer maken 
+
+## dag 11 26-1-2018
+- SQL datbase aanpassen
+- Beginnen met zorgen dat er per coin de juiste waarden opgehaald worden
+
+## dag 12 29-1-2018
+-zorgen dat er per coin de juiste waarden opgehaald worden werkt
+
+## dag 30-1-2018
+- coinmarketcap enkel voor lijst gebruiken, cryptocompare voor de specifieke info
+- bugfixes
+
+## dag 31-1-2018
+- code opschone, optimaliseren en comments
+
+## 1-1-2018
+- report 
+- 

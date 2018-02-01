@@ -170,7 +170,7 @@ public class SpecificCoinInfoFragment extends Fragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                Log.d("error: ", throwable.toString());
+                Log.e("error: ", throwable.toString());
             }
         });
     }

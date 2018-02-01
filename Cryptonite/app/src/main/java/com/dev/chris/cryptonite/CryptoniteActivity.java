@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,10 +28,8 @@ public class CryptoniteActivity extends AppCompatActivity {
         // load CoinOverviewistFragment
         Bundle bundle = new Bundle();
         bundle.putBoolean("search", false);
-        Log.d("oncreate", "it works");
         FragmentManager fm = getSupportFragmentManager();
         CoinOverviewListFragment coinOverviewListFragment = new CoinOverviewListFragment();
-        Log.d("fragment", coinOverviewListFragment.toString());
         coinOverviewListFragment.setArguments(bundle);
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.crypto_fragment_container, coinOverviewListFragment);
@@ -59,7 +56,6 @@ public class CryptoniteActivity extends AppCompatActivity {
         public boolean onQueryTextSubmit(String query) {
 
             // load CoinOverviewListFragment as search
-            Log.d("komikhierweldetweedekeerIN", "JAAAAAAAAAAAAAAAAAAA");
             Bundle bundle = new Bundle();
             bundle.putBoolean("search", true);
             bundle.putString("query", query);

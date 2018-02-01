@@ -78,7 +78,6 @@ public class FavoriteCoinListFragment extends ListFragment implements ResponseHa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.refreshMenu:
                 getFavorites();

@@ -30,6 +30,7 @@ class NetworkAndMergeInfoClass {
     private String fiatCurrencyString = "USD";
 
     void networkRequest(ArrayList<CryptoCoinDataModel> cryptoCoinArrayList) {
+        cryptoCoinArrayList.removeAll(cryptoCoinArrayList);
         AsyncHttpClient client = new AsyncHttpClient();
         client.setTimeout(5000);
         client.get(url, new JsonHttpResponseHandler() {
@@ -112,7 +113,6 @@ class NetworkAndMergeInfoClass {
     }
 
     private void setSpecificCoinDataAlgorithm(ArrayList<CryptoCoinDataModel> cryptoCoinArrayList, JSONObject httpRequestResponse, int saveStartPlaceInt) throws JSONException {
-
         JSONObject jsonObjectForKey = httpRequestResponse.getJSONObject("RAW");
 
         // get info for listview from JSON

@@ -39,7 +39,6 @@ class SpecificCryptoCoinDataModel {
         SpecificCryptoCoinDataModel specificCoinData = new SpecificCryptoCoinDataModel();
 
         try {
-
             specificCoinData.market = jsonObject.getJSONObject(displayString)
                     .getJSONObject(coinSymbol).getJSONObject(fiatCurrencyString)
                     .getString("MARKET");

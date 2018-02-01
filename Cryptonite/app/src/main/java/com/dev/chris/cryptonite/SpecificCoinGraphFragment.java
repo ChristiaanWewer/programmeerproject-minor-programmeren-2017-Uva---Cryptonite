@@ -51,12 +51,6 @@ public class SpecificCoinGraphFragment extends Fragment {
         String coinPartOfUrl = getActivity().getIntent().getStringExtra("coinSymbolString");
         urlString = "https://min-api.cryptocompare.com/data/histoday?fsym=" + coinPartOfUrl +
                 "&tsym=USD&limit=7";
-        return rootView;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
 
         // start auto refresher up to date data
         try {
@@ -64,6 +58,7 @@ public class SpecificCoinGraphFragment extends Fragment {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return rootView;
     }
 
     private void autoRefresher() throws InterruptedException {

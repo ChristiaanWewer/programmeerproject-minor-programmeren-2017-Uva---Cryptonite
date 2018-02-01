@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 /**
  * Christiaan Wewer
@@ -46,7 +47,7 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addCoinRankSymbolName(int coinRank, String coinSymbol, String coinName) {
+    Boolean addCoinRankSymbolName(int coinRank, String coinSymbol, String coinName) {
 
         // add coin to the database if exists
         SQLiteDatabase db = this.getReadableDatabase();
@@ -55,7 +56,7 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
         while (checkCursor.moveToNext()) {
                 String selectString = checkCursor.getString(checkCursor.getColumnIndex(FavoriteCoinDatabase.COL2));
             if (selectString.equals(coinSymbol)) {
-                return;
+                return false;
             }
         }
 
@@ -65,6 +66,8 @@ public class FavoriteCoinDatabase extends SQLiteOpenHelper {
         cointentValues.put(COL2, coinSymbol);
         cointentValues.put(COL3, coinName);
         db.insert(NAME, null, cointentValues);
+
+        return true;
     }
 
     Cursor selectRankSymbolName() {

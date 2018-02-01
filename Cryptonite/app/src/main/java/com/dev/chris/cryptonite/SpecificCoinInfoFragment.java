@@ -64,9 +64,8 @@ public class SpecificCoinInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        rootView = inflater.inflate(R.layout.fragment_specific_coin_list, container, false);
-
+        rootView = inflater.inflate(R.layout.fragment_specific_coin_list,
+                container, false);
         graphButton = rootView.findViewById(R.id.goToGraphButton);
         marketTextView = rootView.findViewById(R.id.marketFromApiTextView);
         priceTextView = rootView.findViewById(R.id.priceFromAPITextView);

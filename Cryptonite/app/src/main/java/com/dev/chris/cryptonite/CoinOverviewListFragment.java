@@ -99,8 +99,10 @@ public class CoinOverviewListFragment extends ListFragment implements ResponseHa
             int coinRank = favoriteCryptoCoinList.get(position).getRank();
             String coinSymbol = favoriteCryptoCoinList.get(position).getSymbol();
             String coinName = favoriteCryptoCoinList.get(position).getCoinName();
-            favoriteCoinDatabase.addCoinRankSymbolName(coinRank, coinSymbol, coinName);
-            Toast.makeText(getActivity(), "Coin added to favorites", Toast.LENGTH_LONG).show();
+            if (favoriteCoinDatabase.addCoinRankSymbolName(coinRank, coinSymbol, coinName)) {
+                Toast.makeText(getActivity(), "Coin added to favorites", Toast.LENGTH_LONG)
+                        .show();
+            }
             return false;
         }
     }

@@ -12,6 +12,8 @@ Naam applicatie: Cryptonite
 
 Omschrijving: Applicatie om  prijzen van cryptomunten te bekijken
 
+[![BCH compliance](https://bettercodehub.com/edge/badge/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uva---Cryptonite?branch=master)](https://bettercodehub.com/)
+
 # Copyright statement
 Dit project is ontwikkeld door Christiaan W. en is ook eigendom van Christiaan W. Zie de License file voor meer info.
 https://github.com/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uva---Cryptonite/blob/master/LICENSE

@@ -22,7 +22,8 @@ https://github.com/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uv
 Als een persoon in kwestie cryptomunten heeft en de koersen actief in de gaten wil houden, heeft deze gene hier een Android applicatie voor nodig.
 
 # Oplossing
-Een applicatie waarmee de prijzen van cryptomunten realtime in garfiekvorm bekeken kunnen worden. Ook kan er bij een bepaalde stijging/daling een notificatie gestuurd worden.
+Een applicatie waarmee de prijzen van cryptomunten realtime in garfiekvorm bekeken kunnen worden.
+Video: https://youtu.be/dHPtP2eeEes
 
 ## Screenshots
 <img src="https://github.com/ChristiaanWewer/programmeerproject-minor-programmeren-2017-Uva---Cryptonite/blob/master/doc/Overview.png" alt="Screenshot Cryptonite main/search" width="200px">
